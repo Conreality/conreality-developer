@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'routes.dart';
 import 'script_screen.dart' show ScriptScreen;
+import 'package:flutter/services.dart' show MethodChannel;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void main() => runApp(App());
+const MethodChannel _channel = const MethodChannel('app.conreality/developer');
+
+void main() async {
+  final version = await _channel.invokeMethod('getVersion');
+  print("Version ${version}");
+  runApp(App());
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
