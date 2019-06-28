@@ -28,6 +28,15 @@ public class ApplicationPlugin extends FlutterMethodCallHandler {
   }
 
   /** Plugin registration. */
+  public static void registerWith(final PluginRegistry registry) {
+    final String key = ApplicationPlugin.class.getCanonicalName();
+    if (registry.hasPlugin(key)) {
+      return; // already registered with the registry
+    }
+    registerWith(registry.registrarFor(key));
+  }
+
+  /** Plugin registration. */
   public static void registerWith(final Registrar registrar) {
     assert(registrar != null);
 

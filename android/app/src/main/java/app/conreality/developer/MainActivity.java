@@ -13,7 +13,6 @@ public class MainActivity extends FlutterActivity {
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     GeneratedPluginRegistrant.registerWith(this);
-    (new MethodChannel(getFlutterView(), ApplicationPlugin.CHANNEL))
-      .setMethodCallHandler(new ApplicationPlugin(null)); // FIXME
+    ApplicationPlugin.registerWith(this);
   }
 }
