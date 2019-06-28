@@ -11,12 +11,12 @@ public class Application extends FlutterApplication implements PluginRegistrantC
   @Override
   public void onCreate() {
     super.onCreate();
-    DeveloperPlugin.setPluginRegistrant(this);
+    ApplicationPlugin.setPluginRegistrant(this);
   }
 
   @Override
   public void registerWith(final PluginRegistry registry) {
     GeneratedPluginRegistrant.registerWith(registry);
-    //DeveloperPlugin.registerWith(registry.registrarFor("app.conreality.developer.DeveloperPlugin")); // FIXME
+    //ApplicationPlugin.registerWith(registry.registrarFor("app.conreality.developer.ApplicationPlugin")); // FIXME
   }
 }

@@ -11,9 +11,9 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 import java.io.IOException;
 
-/** DeveloperPlugin */
-public class DeveloperPlugin extends FlutterMethodCallHandler {
-  private static final String TAG = "DeveloperPlugin";
+/** ApplicationPlugin */
+public class ApplicationPlugin extends FlutterMethodCallHandler {
+  private static final String TAG = "ApplicationPlugin";
   public static final String CHANNEL = "app.conreality/developer";
 
   private static PluginRegistrantCallback pluginRegistrantCallback;
@@ -23,7 +23,7 @@ public class DeveloperPlugin extends FlutterMethodCallHandler {
     pluginRegistrantCallback = callback;
   }
 
-  DeveloperPlugin(final Registrar registrar) {
+  ApplicationPlugin(final Registrar registrar) {
     super(registrar);
   }
 
@@ -32,7 +32,7 @@ public class DeveloperPlugin extends FlutterMethodCallHandler {
     assert(registrar != null);
 
     (new MethodChannel(registrar.messenger(), CHANNEL))
-      .setMethodCallHandler(new DeveloperPlugin(registrar));
+      .setMethodCallHandler(new ApplicationPlugin(registrar));
   }
 
   @Override
