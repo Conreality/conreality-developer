@@ -59,7 +59,7 @@ public class ApplicationPlugin extends FlutterMethodCallHandler {
 
       case "spawnThread": {
         this.threadID++;
-        //new ThreadHandler(this.registrar, this.threadID); // TODO
+        new ThreadHandler(this.registrar, this.threadID);
         result.success(this.threadID);
         break;
       }

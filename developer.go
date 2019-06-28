@@ -7,6 +7,11 @@ import (
 	"fmt"
 )
 
+// Version
+func Version() string {
+	return fmt.Sprintf("%s", "0.0.0") // TODO
+}
+
 // State
 type State struct{}
 
@@ -15,7 +20,12 @@ func NewState() *State {
 	return &State{}
 }
 
-// Version
-func Version() string {
-	return fmt.Sprintf("%s", "0.0.0")
+// ExecString
+func (state *State) ExecString(code string) error {
+	return nil // TODO
+}
+
+// ExecFile
+func (state *State) ExecFile(path string) error {
+	return nil // TODO
 }

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'routes.dart';
 import 'script_screen.dart' show ScriptScreen;
-import 'src/gdk.dart' show GDK;
+import 'src/gdk.dart' show GDK, GDKThread;
 
 ////////////////////////////////////////////////////////////////////////////////
 
 void main() async {
   print("Conreality GDK ${await GDK.version}");
+  final thread = await GDKThread.spawn();
+  print(await thread.eval("6*7")); // DEBUG
   runApp(App());
 }
 
