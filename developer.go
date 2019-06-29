@@ -6,12 +6,13 @@ package developer
 import (
 	"fmt"
 
+	"github.com/conreality/conreality-gdk/gdk"
 	"github.com/conreality/conreality-gdk/rt"
 )
 
 // Version
 func Version() string {
-	return fmt.Sprintf("%s", "0.0.0") // TODO
+	return fmt.Sprintf("%s", gdk.Version)
 }
 
 // State
@@ -28,13 +29,24 @@ func NewState() *State {
 		Unit:    &Unit{},
 		Theater: &Theater{},
 		Game:    &Game{},
+		Headset: nil, // see SetHeadset
 	}
+	return state
+}
+
+// SetHeadset
+func (state *State) SetHeadset(headset Headset) {
+	state.model.Headset = headset
+}
+
+// Start
+func (state *State) Start() error {
 	thread, err := rt.NewThread(state.model, false)
 	if err != nil {
-		panic(err) // FIXME
+		return err
 	}
 	state.thread = thread
-	return state
+	return nil
 }
 
 // Destroy
@@ -59,6 +71,11 @@ func (state *State) ExecString(code string) error {
 // ExecFile
 func (state *State) ExecFile(path string) error {
 	return state.thread.EvalFile(path)
+}
+
+// Headset
+type Headset interface {
+	Speak(message string)
 }
 
 // Agent

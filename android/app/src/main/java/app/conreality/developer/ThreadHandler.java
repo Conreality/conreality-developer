@@ -31,6 +31,13 @@ final class ThreadHandler extends FlutterMethodCallHandler {
     this.channel = new MethodChannel(registrar.messenger(), channelName);
     this.executor = Executors.newSingleThreadScheduledExecutor();
     this.state = Developer.newState();
+    this.state.setHeadset(new HeadsetSpeaker());
+    try {
+      this.state.start();
+    }
+    catch (final Exception error) {
+      throw new RuntimeException(error);
+    }
     channel.setMethodCallHandler(this);
   }
 
