@@ -50,7 +50,9 @@ class GDKThread {
   static Future<GDKThread> spawn() async {
     try {
       final int id = await _global.invokeMethod('spawnThread');
-      return GDKThread._(id);
+      final thread = GDKThread._(id);
+      await thread.evalAsset("scripts/prelude.luac");
+      return thread;
     } on PlatformException catch (error) {
       throw GDKError.from(error);
     }

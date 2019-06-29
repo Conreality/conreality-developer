@@ -37,6 +37,11 @@ abstract class FlutterMethodCallHandler implements MethodCallHandler {
 
   String
   readAssetText(final String assetName) throws IOException {
+    return new String(this.readAsset(assetName), java.nio.charset.StandardCharsets.UTF_8);
+  }
+
+  byte[]
+  readAsset(final String assetName) throws IOException {
     final String assetKey = registrar.lookupKeyForAsset(assetName);
     final InputStream assetStream = getAssets().open(assetKey, AssetManager.ACCESS_STREAMING);
     final ByteArrayOutputStream result = new ByteArrayOutputStream();
@@ -47,7 +52,7 @@ abstract class FlutterMethodCallHandler implements MethodCallHandler {
         result.write(buffer, 0, length);
       }
     }
-    return result.toString("UTF-8");
+    return result.toByteArray();
   }
 
   Bitmap

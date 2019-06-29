@@ -11,7 +11,7 @@ import 'src/gdk.dart' show GDK, GDKThread;
 void main() async {
   print("Conreality GDK ${await GDK.version}");
   final thread = await GDKThread.spawn();
-  print(await thread.eval("6*7")); // DEBUG
+  print(await thread.evalAsset("scripts/hello.luac")); // DEBUG
   runApp(App());
 }
 

@@ -92,9 +92,9 @@ final class ThreadHandler extends FlutterMethodCallHandler {
       case "evalAsset": {
         final State state = this.state;
         final String assetName = (String)call.arguments;
-        final String code;
+        final byte[] chunk;
         try {
-          code = readAssetText(assetName);
+          chunk = readAsset(assetName);
         }
         catch (final IOException error) {
           result.error("IOException", error.getMessage(), error.toString());
@@ -105,7 +105,7 @@ final class ThreadHandler extends FlutterMethodCallHandler {
             @Override
             public Object get() {
               try {
-                state.execString(code);
+                state.execChunk(chunk);
                 return null; // TODO
               }
               catch (final Exception error) {
