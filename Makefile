@@ -10,12 +10,12 @@ TARGETS  := android/app/libs/developer.aar         \
 all: $(TARGETS)
 
 android/app/libs/developer.aar:
-	$(GOMOBILE) bind -o $@ -target=android -tags=android -javapkg=app.conreality $(GOPKG)
+	$(GOMOBILE) bind -o $@ -target=android/arm64 -tags=android -javapkg=app.conreality $(GOPKG)
 
 android/app/libs/developer-sources.jar: android/app/libs/developer.aar
 
 ios/Frameworks/Developer.framework:
-	$(GOMOBILE) bind -o $@ -target=ios -tags=ios $(GOPKG)
+	$(GOMOBILE) bind -o $@ -target=ios/arm64 -tags=ios $(GOPKG)
 
 clean:
 	rm -rf *~ $(TARGETS)
