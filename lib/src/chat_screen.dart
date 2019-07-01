@@ -2,31 +2,31 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:conreality_dosimeter/dosimeter.dart' show Dosimeter;
+import 'package:conreality_chat/conreality_chat.dart';
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class DosimeterScreen extends StatefulWidget {
-  static const route = "/widgets/dosimeter";
+class ChatScreen extends StatefulWidget {
+  static const route = "/widgets/chat";
 
-  DosimeterScreen({Key key}) : super(key: key);
+  ChatScreen({Key key}) : super(key: key);
 
   @override
-  State<DosimeterScreen> createState() => _DosimeterState();
+  State<ChatScreen> createState() => _ChatState();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class _DosimeterState extends State<DosimeterScreen> {
+class _ChatState extends State<ChatScreen> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dosimeter"),
+        title: Text("Chat"),
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Dosimeter()), // TODO
+      body: Center(child: Text("TODO")), // TODO
     );
   }
 }
