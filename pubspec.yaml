@@ -26,6 +26,9 @@ dependencies:
 
   package_info: ^0.4.0+4
 
+  # See: https://github.com/transistorsoft/flutter_background_geolocation
+  flutter_background_geolocation: ^1.0.10
+
   # See: https://github.com/conreality/conreality-widgets/tree/master/conreality_camera
   conreality_camera:
     git:

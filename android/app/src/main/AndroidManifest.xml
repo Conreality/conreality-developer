@@ -1,12 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="app.conreality.developer">
 
-    <!-- io.flutter.app.FlutterApplication is an android.app.Application that
-         calls FlutterMain.startInitialization(this); in its onCreate method.
-         In most cases you can leave this as-is, but you if you want to provide
-         additional functionality it is fine to subclass or reimplement
-         FlutterApplication and put your custom class here. -->
     <application
+        tools:replace="android:label"
         android:name=".Application"
         android:label="Conreality Developer"
         android:icon="@mipmap/ic_launcher">
@@ -29,5 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <!-- flutter_background_geolocation license -->
+        <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="12bdfa686146ad92b4b91f81f5a733c91ceea6b2df59b6c4279afedbb1091836"/>
     </application>
 </manifest>
