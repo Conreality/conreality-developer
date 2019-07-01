@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         applicationId "app.conreality.developer"
-        minSdkVersion 16
+        minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
