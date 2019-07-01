@@ -29,6 +29,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.11"
+  conreality_dosimeter:
+    dependency: "direct main"
+    description:
+      path: conreality_dosimeter
+      ref: HEAD
+      resolved-ref: "1f9af2ce363fc64d4a8e5681df0cf973f2cd5788"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
   cupertino_icons:
     dependency: "direct main"
     description:
