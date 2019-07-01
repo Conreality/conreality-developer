@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'dosimeter_screen.dart' show DosimeterScreen;
 import 'routes.dart' show appRoutes;
-import 'script_screen.dart' show ScriptScreen;
+import 'widgets_screen.dart' show WidgetsScreen;
 import 'src/gdk.dart' show GDK, GDKThread;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +48,7 @@ class _AppState extends State<App> {
       ),
       home: (_error != null)
           ? Text(_error.toString())
-          : DosimeterScreen(), // TODO
+          : WidgetsScreen(), // TODO
       routes: routes,
     );
   }

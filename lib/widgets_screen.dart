@@ -4,23 +4,23 @@ import 'package:flutter/material.dart';
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class ScriptScreen extends StatefulWidget {
-  static const route = "/scripts";
+class WidgetsScreen extends StatefulWidget {
+  static const route = "/widgets";
 
-  ScriptScreen({Key key}) : super(key: key);
+  WidgetsScreen({Key key}) : super(key: key);
 
   @override
-  State<ScriptScreen> createState() => _ScriptState();
+  State<WidgetsScreen> createState() => _WidgetsState();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class _ScriptState extends State<ScriptScreen> {
+class _WidgetsState extends State<WidgetsScreen> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Scripts"),
+        title: Text("Widgets"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.sync),
