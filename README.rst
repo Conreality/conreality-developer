@@ -13,3 +13,11 @@ Conreality Developer App
 |
 
 https://conreality.app/developer
+
+----
+
+See Also
+========
+
+- `Conreality Widgets
+  <https://github.com/conreality/conreality-widgets>`__
