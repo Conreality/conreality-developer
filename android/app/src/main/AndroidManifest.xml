@@ -2,6 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="app.conreality.developer">
 
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#INTERNET -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_NETWORK_STATE -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_WIFI_STATE -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission.html#BLUETOOTH -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission.html#BLUETOOTH_ADMIN -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#BODY_SENSORS -->
+    <uses-permission android:name="android.permission.BODY_SENSORS"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#CAMERA -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#FOREGROUND_SERVICE -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#VIBRATE -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         tools:replace="android:label"
         android:name=".Application"
