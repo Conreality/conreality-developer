@@ -7,7 +7,7 @@ import 'package:conreality_dosimeter/dosimeter.dart' show Dosimeter;
 ////////////////////////////////////////////////////////////////////////////////
 
 class DosimeterScreen extends StatefulWidget {
-  static const route = "/dosimeter";
+  static const route = "/widgets/dosimeter";
 
   DosimeterScreen({Key key}) : super(key: key);
 

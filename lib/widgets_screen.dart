@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'main_drawer.dart' show MainDrawer;
+
 ////////////////////////////////////////////////////////////////////////////////
 
 class WidgetsScreen extends StatefulWidget {
@@ -32,6 +34,7 @@ class _WidgetsState extends State<WidgetsScreen> {
           ),
         ].where((element) => element != null).toList(),
       ),
+      drawer: MainDrawer(),
       body: Center(child: Text("TODO")), // TODO
     );
   }
