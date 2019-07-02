@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:conreality_map/conreality_map.dart' show Map;
-import 'package:latlong/latlong.dart' show LatLng;
+import 'package:conreality_map/conreality_map.dart' show LatLng, Map;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -19,13 +18,14 @@ class MapScreen extends StatefulWidget {
 ////////////////////////////////////////////////////////////////////////////////
 
 class _MapState extends State<MapScreen> {
-  Stream<LatLng> _stream;
+  final LatLng _initialLocation = LatLng(49.807051, 24.080894);
+  Stream<LatLng> _currentLocation;
 
   @override
   void initState() {
     super.initState();
-    _stream = Stream<LatLng>.periodic(Duration(seconds: 1), (int computationCount) {
-      return LatLng((computationCount % 360).toDouble(), 0); // TODO
+    _currentLocation = Stream<LatLng>.periodic(Duration(seconds: 1), (int computationCount) {
+      return LatLng(_initialLocation.latitude + ((computationCount / 10000.0) % 360).toDouble(), _initialLocation.longitude + ((computationCount / 10000.0) % 360).toDouble()); // TODO
     });
   }
 
@@ -44,7 +44,8 @@ class _MapState extends State<MapScreen> {
       ),
       body: Center(
         child: Map(
-          stream: _stream,
+          initialLocation: _initialLocation,
+          currentLocation: _currentLocation,
         ),
       ),
     );
