@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:conreality_compass/conreality_compass.dart';
+import 'package:conreality_compass/conreality_compass.dart' show Compass;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -18,6 +18,21 @@ class CompassScreen extends StatefulWidget {
 ////////////////////////////////////////////////////////////////////////////////
 
 class _CompassState extends State<CompassScreen> {
+  Stream<int> _stream;
+
+  @override
+  void initState() {
+    super.initState();
+    _stream = Stream<int>.periodic(Duration(seconds: 1), (int computationCount) {
+      return computationCount % 360; // TODO
+    });
+  }
+
+  @override
+  void dispose() async {
+    super.dispose();
+  }
+
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
@@ -26,7 +41,11 @@ class _CompassState extends State<CompassScreen> {
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Text("TODO")), // TODO
+      body: Center(
+        child: Compass(
+          stream: _stream,
+        ),
+      ),
     );
   }
 }

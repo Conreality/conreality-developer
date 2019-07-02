@@ -32,7 +32,7 @@ void main() async {
     //enableHeadless: true, // FIXME
     foregroundService: true,
     notification: bg.Notification(
-      channelName: "Conreality Developer",
+      channelName: "Location",
       title: "Conreality Developer",
       text: "Tracking your location.",
       priority: bg.Config.NOTIFICATION_PRIORITY_HIGH,

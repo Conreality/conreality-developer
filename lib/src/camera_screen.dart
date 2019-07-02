@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:conreality_camera/conreality_camera.dart';
+import 'package:conreality_camera/conreality_camera.dart' show Camera;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -26,7 +26,9 @@ class _CameraState extends State<CameraScreen> {
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Text("TODO")), // TODO
+      body: Center(
+        child: Camera(),
+      ),
     );
   }
 }

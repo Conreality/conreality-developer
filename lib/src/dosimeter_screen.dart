@@ -18,6 +18,21 @@ class DosimeterScreen extends StatefulWidget {
 ////////////////////////////////////////////////////////////////////////////////
 
 class _DosimeterState extends State<DosimeterScreen> {
+  Stream<double> _stream;
+
+  @override
+  void initState() {
+    super.initState();
+    _stream = Stream<double>.periodic(Duration(seconds: 1), (int computationCount) {
+      return computationCount.toDouble(); // TODO
+    });
+  }
+
+  @override
+  void dispose() async {
+    super.dispose();
+  }
+
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
@@ -26,7 +41,12 @@ class _DosimeterState extends State<DosimeterScreen> {
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Dosimeter()), // TODO
+      body: Center(
+        child: Dosimeter(
+          unit: "mrem/h",
+          stream: _stream,
+        ),
+      ),
     );
   }
 }
