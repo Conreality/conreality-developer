@@ -70,6 +70,15 @@ packages:
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
+  conreality_countdown:
+    dependency: "direct main"
+    description:
+      path: conreality_countdown
+      ref: HEAD
+      resolved-ref: "34f7642ebdd46d6c935147ce9fe55f706adb3069"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
   conreality_dosimeter:
     dependency: "direct main"
     description:
@@ -79,12 +88,57 @@ packages:
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
+  conreality_fonts:
+    dependency: "direct main"
+    description:
+      path: conreality_fonts
+      ref: HEAD
+      resolved-ref: "34f7642ebdd46d6c935147ce9fe55f706adb3069"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
+  conreality_gamepad:
+    dependency: "direct main"
+    description:
+      path: conreality_gamepad
+      ref: HEAD
+      resolved-ref: "5069d04f97a08d0c6dd0f27299a6c0c5cfc20a7b"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
+  conreality_icons:
+    dependency: "direct main"
+    description:
+      path: conreality_icons
+      ref: HEAD
+      resolved-ref: "5069d04f97a08d0c6dd0f27299a6c0c5cfc20a7b"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
+  conreality_joystick:
+    dependency: "direct main"
+    description:
+      path: conreality_joystick
+      ref: HEAD
+      resolved-ref: "5069d04f97a08d0c6dd0f27299a6c0c5cfc20a7b"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
   conreality_login:
     dependency: "direct main"
     description:
       path: conreality_login
       ref: HEAD
       resolved-ref: "4ea1864386f9f51fdcc3ed9081ed4b9a3f75ae1f"
+      url: "https://github.com/conreality/conreality-widgets.git"
+    source: git
+    version: "0.0.1"
+  conreality_logo:
+    dependency: "direct main"
+    description:
+      path: conreality_logo
+      ref: HEAD
+      resolved-ref: "5069d04f97a08d0c6dd0f27299a6c0c5cfc20a7b"
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"

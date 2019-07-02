@@ -25,14 +25,20 @@ class WidgetInfo {
 ////////////////////////////////////////////////////////////////////////////////
 
 final List<WidgetInfo> _widgets = [
-  WidgetInfo(Icons.camera, CameraScreen.route, "Camera", "An augmented-reality camera widget for Conreality games."),
-  WidgetInfo(Icons.chat, ChatScreen.route, "Chat", "A chat widget for Conreality games."),
-  WidgetInfo(Icons.navigation, CompassScreen.route, "Compass", "A compass widget for Conreality games."),
-  WidgetInfo(null, DosimeterScreen.route, "Dosimeter", "A personal radiation dosimeter (Geiger counter) widget for Conreality games."), // TODO: icon
-  WidgetInfo(null, LoginScreen.route, "Login", "A login widget for Conreality games."), // TODO: icon
-  WidgetInfo(Icons.map, MapScreen.route, "Map", "A game map widget for Conreality games."),
-  WidgetInfo(Icons.history, ReplayScreen.route, "Replay", "A game history replay widget for Conreality games."),
-  WidgetInfo(Icons.track_changes, TrackerScreen.route, "Tracker", "A directional tracker widget for Conreality games."),
+  WidgetInfo(Icons.camera, CameraScreen.route, "Camera", "Augmented-reality camera widget."),
+  WidgetInfo(Icons.chat, ChatScreen.route, "Chat", "Team chat widgets."),
+  WidgetInfo(Icons.navigation, CompassScreen.route, "Compass", "Compass widget."),
+  WidgetInfo(null, "/", "Countdown", "Countdown timer widget."), // TODO: icon, route
+  WidgetInfo(null, DosimeterScreen.route, "Dosimeter", "Personal radiation dosimeter widget."), // TODO: icon
+  WidgetInfo(null, "/", "Fonts", "Conreality font assets."), // TODO: icon, route
+  WidgetInfo(null, "/", "Gamepad", "Gamepad widget for robot control."), // TODO: icon, route
+  WidgetInfo(null, "/", "Icons", "Conreality icon assets."), // TODO: icon, route
+  WidgetInfo(null, "/", "Joystick", "Joystick widget for robot control."), // TODO: icon, route
+  WidgetInfo(null, LoginScreen.route, "Login", "Login form widgets."), // TODO: icon
+  WidgetInfo(null, "/", "Logo", "Conreality logo assets."), // TODO: icon, route
+  WidgetInfo(Icons.map, MapScreen.route, "Map", "Game map and marker widgets."),
+  WidgetInfo(Icons.history, ReplayScreen.route, "Replay", "Game history replay widgets."),
+  WidgetInfo(Icons.track_changes, TrackerScreen.route, "Tracker", "Directional and distance tracker widgets."),
 ];
 
 ////////////////////////////////////////////////////////////////////////////////
