@@ -15,7 +15,7 @@ class SensorInfo {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-final List<SensorInfo> _widgets = [
+final List<SensorInfo> _sensors = [
   SensorInfo(Icons.mic, "Audio", "Using the built-in microphone.", true),
   SensorInfo(Icons.battery_std, "Battery", "Using the built-in battery meter.", true),
   SensorInfo(Icons.navigation, "Compass", "Using the built-in magnetometer.", true),
@@ -35,9 +35,9 @@ class SensorList extends StatelessWidget {
   Widget build(final BuildContext context) {
     return ListView.separated(
       padding: EdgeInsets.all(8.0),
-      itemCount: _widgets.length,
+      itemCount: _sensors.length,
       itemBuilder: (final BuildContext context, final int index) {
-        final SensorInfo sensor = _widgets[index];
+        final SensorInfo sensor = _sensors[index];
         return GestureDetector(
           child: ListTile(
             leading: Icon(sensor.icon ?? Icons.devices),

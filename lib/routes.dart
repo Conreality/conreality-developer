@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart' show WidgetBuilder;
 
+import 'filters_screen.dart' show FiltersScreen;
 import 'sensors_screen.dart' show SensorsScreen;
 import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
@@ -18,17 +19,18 @@ import 'src/tracker_screen.dart' show TrackerScreen;
 ////////////////////////////////////////////////////////////////////////////////
 
 Map<String, WidgetBuilder> appRoutes = {
-  SensorsScreen.route: (context) => SensorsScreen(),
-  ScriptsScreen.route: (context) => ScriptsScreen(),
-  WidgetsScreen.route: (context) => WidgetsScreen(),
-
+  // Drawer
+  FiltersScreen.route: (_) => FiltersScreen(),
+  SensorsScreen.route: (_) => SensorsScreen(),
+  ScriptsScreen.route: (_) => ScriptsScreen(),
+  WidgetsScreen.route: (_) => WidgetsScreen(),
   // Widgets
-  CameraScreen.route: (context) => CameraScreen(),
-  ChatScreen.route: (context) => ChatScreen(),
-  CompassScreen.route: (context) => CompassScreen(),
-  DosimeterScreen.route: (context) => DosimeterScreen(),
-  LoginScreen.route: (context) => LoginScreen(),
-  MapScreen.route: (context) => MapScreen(),
-  ReplayScreen.route: (context) => ReplayScreen(),
-  TrackerScreen.route: (context) => TrackerScreen(),
+  CameraScreen.route: (_) => CameraScreen(),
+  ChatScreen.route: (_) => ChatScreen(),
+  CompassScreen.route: (_) => CompassScreen(),
+  DosimeterScreen.route: (_) => DosimeterScreen(),
+  LoginScreen.route: (_) => LoginScreen(),
+  MapScreen.route: (_) => MapScreen(),
+  ReplayScreen.route: (_) => ReplayScreen(),
+  TrackerScreen.route: (_) => TrackerScreen(),
 };
