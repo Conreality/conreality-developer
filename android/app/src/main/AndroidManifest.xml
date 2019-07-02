@@ -78,7 +78,7 @@
             </intent-filter>
         </activity>
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-        <!-- flutter_background_geolocation license -->
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDpPR1yHWQmerLOnFpPgq21B08Imnq76Fw"/>
         <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="12bdfa686146ad92b4b91f81f5a733c91ceea6b2df59b6c4279afedbb1091836"/>
     </application>
 </manifest>

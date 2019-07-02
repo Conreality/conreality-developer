@@ -2,6 +2,7 @@
 
 import UIKit
 import Flutter
+import GoogleMaps
 import Developer
 
 @UIApplicationMain
@@ -22,6 +23,7 @@ import Developer
       result(FlutterMethodNotImplemented)
     })
 
+    GMSServices.provideAPIKey("AIzaSyA5TTEO4YckWdt6TVwbbRRyv_JY-dO3O8g")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

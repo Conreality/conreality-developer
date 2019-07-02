@@ -55,7 +55,7 @@ packages:
     description:
       path: conreality_camera
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -64,7 +64,7 @@ packages:
     description:
       path: conreality_chat
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -73,7 +73,7 @@ packages:
     description:
       path: conreality_compass
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -82,7 +82,7 @@ packages:
     description:
       path: conreality_dosimeter
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -91,7 +91,7 @@ packages:
     description:
       path: conreality_login
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -100,7 +100,7 @@ packages:
     description:
       path: conreality_map
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -109,7 +109,7 @@ packages:
     description:
       path: conreality_replay
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -118,7 +118,7 @@ packages:
     description:
       path: conreality_tracker
       ref: HEAD
-      resolved-ref: "04aecd3462486cc979b4a036192493625670daa9"
+      resolved-ref: cbb03e693bfcbc16b32bd0b01895d088c8ba6bc6
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -160,6 +160,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  google_maps_flutter:
+    dependency: transitive
+    description:
+      name: google_maps_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.19"
   intl:
     dependency: transitive
     description:
