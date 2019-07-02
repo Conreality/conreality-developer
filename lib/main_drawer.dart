@@ -33,6 +33,11 @@ class _MainDrawerState extends State<MainDrawer> {
         title: Text("Scripts"),
         onTap: () => Navigator.of(context).pushNamed("/scripts"),
       ),
+      ListTile(
+        leading: Icon(Icons.devices),
+        title: Text("Sensors"),
+        onTap: () => Navigator.of(context).pushNamed("/sensors"),
+      ),
       Divider(),
       AboutListTile(
         icon: FlutterLogo(), // TODO

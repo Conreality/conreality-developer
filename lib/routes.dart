@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart' show WidgetBuilder;
 
+import 'sensors_screen.dart' show SensorsScreen;
 import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
 
@@ -17,6 +18,7 @@ import 'src/tracker_screen.dart' show TrackerScreen;
 ////////////////////////////////////////////////////////////////////////////////
 
 Map<String, WidgetBuilder> appRoutes = {
+  SensorsScreen.route: (context) => SensorsScreen(),
   ScriptsScreen.route: (context) => ScriptsScreen(),
   WidgetsScreen.route: (context) => WidgetsScreen(),
 
