@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="app.conreality.developer">
 
-    <!-- See: https://developer.android.com/reference/android/Manifest.permission#INTERNET -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_BACKGROUND_LOCATION -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -14,10 +14,13 @@
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_WIFI_STATE -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
-    <!-- See: https://developer.android.com/reference/android/Manifest.permission.html#BLUETOOTH -->
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACTIVITY_RECOGNITION -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH -->
     <uses-permission android:name="android.permission.BLUETOOTH"/>
 
-    <!-- See: https://developer.android.com/reference/android/Manifest.permission.html#BLUETOOTH_ADMIN -->
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#BLUETOOTH_ADMIN -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#BODY_SENSORS -->
@@ -28,6 +31,24 @@
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#FOREGROUND_SERVICE -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#NFC -->
+    <uses-permission android:name="android.permission.NFC"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#INTERNET -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#RECORD_AUDIO -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#TRANSMIT_IR -->
+    <uses-permission android:name="android.permission.TRANSMIT_IR"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#USE_BIOMETRIC -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#USE_FINGERPRINT -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#VIBRATE -->
     <uses-permission android:name="android.permission.VIBRATE"/>
