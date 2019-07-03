@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'plugins/headset_screen.dart';
+
 ////////////////////////////////////////////////////////////////////////////////
 
 class PluginInfo {
