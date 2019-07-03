@@ -8,14 +8,14 @@ import 'sensors_screen.dart' show SensorsScreen;
 import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
 
-import 'src/camera_screen.dart' show CameraScreen;
-import 'src/chat_screen.dart' show ChatScreen;
-import 'src/compass_screen.dart' show CompassScreen;
-import 'src/dosimeter_screen.dart' show DosimeterScreen;
-import 'src/login_screen.dart' show LoginScreen;
-import 'src/map_screen.dart' show MapScreen;
-import 'src/replay_screen.dart' show ReplayScreen;
-import 'src/tracker_screen.dart' show TrackerScreen;
+import 'widgets/camera_screen.dart' show CameraScreen;
+import 'widgets/chat_screen.dart' show ChatScreen;
+import 'widgets/compass_screen.dart' show CompassScreen;
+import 'widgets/dosimeter_screen.dart' show DosimeterScreen;
+import 'widgets/login_screen.dart' show LoginScreen;
+import 'widgets/map_screen.dart' show MapScreen;
+import 'widgets/replay_screen.dart' show ReplayScreen;
+import 'widgets/tracker_screen.dart' show TrackerScreen;
 
 ////////////////////////////////////////////////////////////////////////////////
 

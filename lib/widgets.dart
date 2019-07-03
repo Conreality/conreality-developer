@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-import 'camera_screen.dart' show CameraScreen;
-import 'chat_screen.dart' show ChatScreen;
-import 'compass_screen.dart' show CompassScreen;
-import 'dosimeter_screen.dart' show DosimeterScreen;
-import 'login_screen.dart' show LoginScreen;
-import 'map_screen.dart' show MapScreen;
-import 'replay_screen.dart' show ReplayScreen;
-import 'tracker_screen.dart' show TrackerScreen;
+import 'widgets/camera_screen.dart' show CameraScreen;
+import 'widgets/chat_screen.dart' show ChatScreen;
+import 'widgets/compass_screen.dart' show CompassScreen;
+import 'widgets/dosimeter_screen.dart' show DosimeterScreen;
+import 'widgets/login_screen.dart' show LoginScreen;
+import 'widgets/map_screen.dart' show MapScreen;
+import 'widgets/replay_screen.dart' show ReplayScreen;
+import 'widgets/tracker_screen.dart' show TrackerScreen;
 
 ////////////////////////////////////////////////////////////////////////////////
 

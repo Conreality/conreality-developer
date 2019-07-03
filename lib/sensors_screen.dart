@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'main_drawer.dart' show MainDrawer;
 
-import 'src/sensor_list.dart' show SensorList;
+import 'sensors.dart' show SensorList;
 
 ////////////////////////////////////////////////////////////////////////////////
 

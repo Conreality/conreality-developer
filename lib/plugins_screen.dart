@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'main_drawer.dart' show MainDrawer;
 
-import 'src/plugin_list.dart' show PluginList;
+import 'plugins.dart' show PluginList;
 
 ////////////////////////////////////////////////////////////////////////////////
 
