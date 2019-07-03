@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:conreality_fonts/conreality_fonts.dart' show B612;
 import 'package:conreality_tracker/conreality_tracker.dart' show DistanceTracker;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +46,7 @@ class _TrackerState extends State<TrackerScreen> {
         child: DistanceTracker(
           unit: "meters",
           stream: _stream,
+          fontFamily: B612.fontFamily,
         ),
       ),
     );

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:conreality_compass/conreality_compass.dart' show Compass;
+import 'package:conreality_fonts/conreality_fonts.dart' show B612;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +45,7 @@ class _CompassState extends State<CompassScreen> {
       body: Center(
         child: Compass(
           stream: _stream,
+          fontFamily: B612.fontFamily,
         ),
       ),
     );
