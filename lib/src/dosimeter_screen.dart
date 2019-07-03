@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:conreality_dosimeter/conreality_dosimeter.dart' show Dosimeter;
+import 'package:conreality_fonts/conreality_fonts.dart' show B612;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -45,6 +46,7 @@ class _DosimeterState extends State<DosimeterScreen> {
         child: Dosimeter(
           unit: "mrem/h",
           stream: _stream,
+          fontFamily: B612.fontFamily,
         ),
       ),
     );

@@ -93,10 +93,10 @@ packages:
     description:
       path: conreality_fonts
       ref: HEAD
-      resolved-ref: "34f7642ebdd46d6c935147ce9fe55f706adb3069"
+      resolved-ref: "5481015a30e38e48510bf1e85ade5e13e33d2d59"
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
-    version: "0.0.1"
+    version: "1.0.0"
   conreality_gamepad:
     dependency: "direct main"
     description:
