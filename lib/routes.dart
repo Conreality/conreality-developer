@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart' show WidgetBuilder;
 
 import 'filters_screen.dart' show FiltersScreen;
+import 'plugins_screen.dart' show PluginsScreen;
 import 'sensors_screen.dart' show SensorsScreen;
 import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
@@ -21,6 +22,7 @@ import 'src/tracker_screen.dart' show TrackerScreen;
 Map<String, WidgetBuilder> appRoutes = {
   // Drawer
   FiltersScreen.route: (_) => FiltersScreen(),
+  PluginsScreen.route: (_) => PluginsScreen(),
   SensorsScreen.route: (_) => SensorsScreen(),
   ScriptsScreen.route: (_) => ScriptsScreen(),
   WidgetsScreen.route: (_) => WidgetsScreen(),

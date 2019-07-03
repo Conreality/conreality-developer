@@ -29,6 +29,11 @@ class _MainDrawerState extends State<MainDrawer> {
         onTap: () => Navigator.of(context).pushNamed("/widgets"),
       ),
       ListTile(
+        leading: Icon(Icons.devices_other), // TODO: icon
+        title: Text("Plugins"),
+        onTap: () => Navigator.of(context).pushNamed("/plugins"),
+      ),
+      ListTile(
         leading: Icon(Icons.code),
         title: Text("Scripts"),
         onTap: () => Navigator.of(context).pushNamed("/scripts"),
