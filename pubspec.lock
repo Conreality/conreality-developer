@@ -106,6 +106,15 @@ packages:
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
+  conreality_headset:
+    dependency: "direct main"
+    description:
+      path: conreality_headset
+      ref: HEAD
+      resolved-ref: a08a607c2ddcd4a201f6862d5965e19cb34ccb04
+      url: "https://github.com/conreality/conreality-plugins.git"
+    source: git
+    version: "0.0.1"
   conreality_icons:
     dependency: "direct main"
     description:
