@@ -7,6 +7,8 @@ import 'package:conreality_scripts/conreality_scripts.dart' show Scripts;
 import 'main_drawer.dart' show MainDrawer;
 import 'scripts.dart' show scripts;
 
+import 'src/future_text.dart' show FutureText;
+
 ////////////////////////////////////////////////////////////////////////////////
 
 class ScriptsScreen extends StatefulWidget {
@@ -48,16 +50,15 @@ class ScriptList extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       itemCount: scripts.length,
       itemBuilder: (final BuildContext context, final int index) {
-        final script = scripts[index];
+        final script = Scripts.all[scripts[index].label];
         return GestureDetector(
           child: ListTile(
-            leading: Icon(script.icon ?? MdiIcons.script),
-            title: Text(script.label),
-            subtitle: Text(script.summary),
-            trailing: Icon(script.isRunning ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
+            leading: Icon(MdiIcons.script),
+            title: FutureText(script.label),
+            subtitle: FutureText(script.summary),
+            trailing: Icon(false ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
           ),
           onTap: () async { // TODO
-            final script = Scripts.all[script.label];
             print(script);
             print(await script.loadSource());
             print(await script.loadBinary());

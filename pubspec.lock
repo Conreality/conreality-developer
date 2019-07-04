@@ -175,7 +175,7 @@ packages:
       name: conreality_scripts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+20190704.1"
+    version: "1.0.1+20190704.1"
   conreality_tracker:
     dependency: "direct main"
     description:
