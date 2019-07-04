@@ -25,6 +25,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+  material_design_icons_flutter: ^3.2.3695
   package_info: ^0.4.0+4
 
   # See: https://github.com/transistorsoft/flutter_background_geolocation
