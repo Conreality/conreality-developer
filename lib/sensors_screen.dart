@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'main_drawer.dart' show MainDrawer;
-
-import 'sensors.dart' show SensorList;
+import 'sensors.dart' show sensors;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -27,10 +26,6 @@ class _SensorsState extends State<SensorsScreen> {
         title: Text("Sensors"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.sync),
-            onPressed: null,
-          ),
-          IconButton(
             icon: Icon(Icons.more_vert),
             onPressed: null,
           ),
@@ -38,6 +33,35 @@ class _SensorsState extends State<SensorsScreen> {
       ),
       drawer: MainDrawer(),
       body: Center(child: SensorList()),
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+class SensorList extends StatelessWidget {
+  @override
+  Widget build(final BuildContext context) {
+    return ListView.separated(
+      padding: EdgeInsets.all(8.0),
+      itemCount: sensors.length,
+      itemBuilder: (final BuildContext context, final int index) {
+        final sensor = sensors[index];
+        return GestureDetector(
+          child: ListTile(
+            leading: Icon(sensor.icon ?? Icons.devices),
+            title: Text(sensor.label),
+            subtitle: Text(sensor.summary),
+            trailing: Icon(sensor.isPresent ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
+          ),
+          onTap: () {
+            // TODO
+          },
+        );
+      },
+      separatorBuilder: (final BuildContext context, final int index) {
+        return Divider();
+      },
     );
   }
 }

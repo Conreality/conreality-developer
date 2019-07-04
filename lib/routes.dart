@@ -11,8 +11,14 @@ import 'widgets_screen.dart' show WidgetsScreen;
 import 'widgets/camera_screen.dart' show CameraScreen;
 import 'widgets/chat_screen.dart' show ChatScreen;
 import 'widgets/compass_screen.dart' show CompassScreen;
+import 'widgets/countdown_screen.dart' show CountdownScreen;
 import 'widgets/dosimeter_screen.dart' show DosimeterScreen;
+import 'widgets/fonts_screen.dart' show FontsScreen;
+import 'widgets/gamepad_screen.dart' show GamepadScreen;
+import 'widgets/icons_screen.dart' show IconsScreen;
+import 'widgets/joystick_screen.dart' show JoystickScreen;
 import 'widgets/login_screen.dart' show LoginScreen;
+import 'widgets/logo_screen.dart' show LogoScreen;
 import 'widgets/map_screen.dart' show MapScreen;
 import 'widgets/replay_screen.dart' show ReplayScreen;
 import 'widgets/tracker_screen.dart' show TrackerScreen;
@@ -30,8 +36,14 @@ Map<String, WidgetBuilder> appRoutes = {
   CameraScreen.route: (_) => CameraScreen(),
   ChatScreen.route: (_) => ChatScreen(),
   CompassScreen.route: (_) => CompassScreen(),
+  CountdownScreen.route: (_) => CountdownScreen(),
   DosimeterScreen.route: (_) => DosimeterScreen(),
+  FontsScreen.route: (_) => FontsScreen(),
+  GamepadScreen.route: (_) => GamepadScreen(),
+  IconsScreen.route: (_) => IconsScreen(),
+  JoystickScreen.route: (_) => JoystickScreen(),
   LoginScreen.route: (_) => LoginScreen(),
+  LogoScreen.route: (_) => LogoScreen(),
   MapScreen.route: (_) => MapScreen(),
   ReplayScreen.route: (_) => ReplayScreen(),
   TrackerScreen.route: (_) => TrackerScreen(),

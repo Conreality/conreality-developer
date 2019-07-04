@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'main_drawer.dart' show MainDrawer;
+import 'scripts.dart' show scripts;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -25,17 +26,13 @@ class _ScriptsState extends State<ScriptsScreen> {
         title: Text("Scripts"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.sync),
-            onPressed: null,
-          ),
-          IconButton(
             icon: Icon(Icons.more_vert),
             onPressed: null,
           ),
         ].where((element) => element != null).toList(),
       ),
       drawer: MainDrawer(),
-      body: Center(child: Text("TODO")), // TODO
+      body: Center(child: Container()), // TODO
     );
   }
 }

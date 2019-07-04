@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'filters.dart' show filters;
 import 'main_drawer.dart' show MainDrawer;
-
-import 'filters.dart' show FilterList;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -27,10 +26,6 @@ class _FiltersState extends State<FiltersScreen> {
         title: Text("Filters"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.sync),
-            onPressed: null,
-          ),
-          IconButton(
             icon: Icon(Icons.more_vert),
             onPressed: null,
           ),
@@ -38,6 +33,35 @@ class _FiltersState extends State<FiltersScreen> {
       ),
       drawer: MainDrawer(),
       body: Center(child: FilterList()),
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+class FilterList extends StatelessWidget {
+  @override
+  Widget build(final BuildContext context) {
+    return ListView.separated(
+      padding: EdgeInsets.all(8.0),
+      itemCount: filters.length,
+      itemBuilder: (final BuildContext context, final int index) {
+        final filter = filters[index];
+        return GestureDetector(
+          child: ListTile(
+            leading: Icon(filter.icon ?? Icons.filter_none),
+            title: Text(filter.label),
+            subtitle: Text(filter.summary),
+            trailing: Icon(filter.isActive ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
+          ),
+          onTap: () {
+            // TODO
+          },
+        );
+      },
+      separatorBuilder: (final BuildContext context, final int index) {
+        return Divider();
+      },
     );
   }
 }

@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'main_drawer.dart' show MainDrawer;
-
-import 'plugins.dart' show PluginList;
+import 'plugins.dart' show plugins;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -27,10 +26,6 @@ class _PluginsState extends State<PluginsScreen> {
         title: Text("Plugins"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.sync),
-            onPressed: null,
-          ),
-          IconButton(
             icon: Icon(Icons.more_vert),
             onPressed: null,
           ),
@@ -38,6 +33,35 @@ class _PluginsState extends State<PluginsScreen> {
       ),
       drawer: MainDrawer(),
       body: Center(child: PluginList()),
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+class PluginList extends StatelessWidget {
+  @override
+  Widget build(final BuildContext context) {
+    return ListView.separated(
+      padding: EdgeInsets.all(8.0),
+      itemCount: plugins.length,
+      itemBuilder: (final BuildContext context, final int index) {
+        final plugin = plugins[index];
+        return GestureDetector(
+          child: ListTile(
+            leading: Icon(plugin.icon ?? Icons.devices_other), // TODO: icon
+            title: Text(plugin.label),
+            subtitle: Text(plugin.summary),
+            trailing: Icon(Icons.check_box, color: Theme.of(context).disabledColor),
+          ),
+          onTap: () {
+            // TODO
+          },
+        );
+      },
+      separatorBuilder: (final BuildContext context, final int index) {
+        return Divider();
+      },
     );
   }
 }

@@ -26,7 +26,7 @@ class _ReplayState extends State<ReplayScreen> {
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Text("TODO")), // TODO
+      body: Center(child: Container()), // TODO
     );
   }
 }
