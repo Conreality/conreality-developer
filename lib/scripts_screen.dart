@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
+import 'package:conreality_scripts/conreality_scripts.dart' show Scripts;
 
 import 'main_drawer.dart' show MainDrawer;
 import 'scripts.dart' show scripts;
@@ -55,8 +56,11 @@ class ScriptList extends StatelessWidget {
             subtitle: Text(script.summary),
             trailing: Icon(script.isRunning ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
           ),
-          onTap: () {
-            // TODO
+          onTap: () async { // TODO
+            final script = Scripts.all[script.label];
+            print(script);
+            print(await script.loadSource());
+            print(await script.loadBinary());
           },
         );
       },

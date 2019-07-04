@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart' show Icons, IconData;
 
+import 'package:conreality_scripts/conreality_scripts.dart' show Scripts;
+
 ////////////////////////////////////////////////////////////////////////////////
 
 class ScriptInfo {
@@ -15,5 +17,6 @@ class ScriptInfo {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-final List<ScriptInfo> scripts = const <ScriptInfo>[
-];
+final List<ScriptInfo> scripts = Scripts.all.keys.map((path) {
+  return ScriptInfo(null, path, path, false); // TODO
+}).toList();

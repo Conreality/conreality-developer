@@ -37,6 +37,9 @@ dependencies:
       url: https://github.com/conreality/conreality-plugins.git
       path: conreality_headset
 
+  # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_scripts
+  conreality_scripts: ^1.0.0
+
   # See: https://github.com/conreality/conreality-widgets/tree/master/conreality_camera
   conreality_camera:
     git:
