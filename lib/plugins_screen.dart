@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 
 import 'main_drawer.dart' show MainDrawer;
 import 'plugins.dart' show plugins;
@@ -49,7 +50,7 @@ class PluginList extends StatelessWidget {
         final plugin = plugins[index];
         return GestureDetector(
           child: ListTile(
-            leading: Icon(plugin.icon ?? Icons.devices_other), // TODO: icon
+            leading: Icon(plugin.icon ?? MdiIcons.videoInputComponent),
             title: Text(plugin.label),
             subtitle: Text(plugin.summary),
             trailing: Icon(Icons.check_box, color: Theme.of(context).disabledColor),

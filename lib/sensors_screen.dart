@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 
 import 'main_drawer.dart' show MainDrawer;
 import 'sensors.dart' show sensors;
@@ -49,7 +50,7 @@ class SensorList extends StatelessWidget {
         final sensor = sensors[index];
         return GestureDetector(
           child: ListTile(
-            leading: Icon(sensor.icon ?? Icons.devices),
+            leading: Icon(sensor.icon ?? MdiIcons.leak),
             title: Text(sensor.label),
             subtitle: Text(sensor.summary),
             trailing: Icon(sensor.isPresent ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),

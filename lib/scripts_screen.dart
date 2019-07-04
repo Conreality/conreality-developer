@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 
 import 'main_drawer.dart' show MainDrawer;
 import 'scripts.dart' show scripts;
@@ -32,7 +33,36 @@ class _ScriptsState extends State<ScriptsScreen> {
         ].where((element) => element != null).toList(),
       ),
       drawer: MainDrawer(),
-      body: Center(child: Container()), // TODO
+      body: Center(child: ScriptList()),
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+class ScriptList extends StatelessWidget {
+  @override
+  Widget build(final BuildContext context) {
+    return ListView.separated(
+      padding: EdgeInsets.all(8.0),
+      itemCount: scripts.length,
+      itemBuilder: (final BuildContext context, final int index) {
+        final script = scripts[index];
+        return GestureDetector(
+          child: ListTile(
+            leading: Icon(script.icon ?? MdiIcons.script),
+            title: Text(script.label),
+            subtitle: Text(script.summary),
+            trailing: Icon(script.isRunning ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
+          ),
+          onTap: () {
+            // TODO
+          },
+        );
+      },
+      separatorBuilder: (final BuildContext context, final int index) {
+        return Divider();
+      },
     );
   }
 }

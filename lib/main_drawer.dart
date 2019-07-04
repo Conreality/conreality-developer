@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 import 'package:package_info/package_info.dart' show PackageInfo;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,27 +25,27 @@ class _MainDrawerState extends State<MainDrawer> {
   Widget build(final BuildContext context) {
     final List<Widget> items = <Widget>[
       ListTile(
-        leading: Icon(Icons.widgets),
+        leading: Icon(MdiIcons.widgets),
         title: Text("Widgets"),
         onTap: () => Navigator.of(context).pushNamed("/widgets"),
       ),
       ListTile(
-        leading: Icon(Icons.devices_other), // TODO: icon
+        leading: Icon(MdiIcons.videoInputComponent),
         title: Text("Plugins"),
         onTap: () => Navigator.of(context).pushNamed("/plugins"),
       ),
       ListTile(
-        leading: Icon(Icons.code),
+        leading: Icon(MdiIcons.script),
         title: Text("Scripts"),
         onTap: () => Navigator.of(context).pushNamed("/scripts"),
       ),
       ListTile(
-        leading: Icon(Icons.devices),
+        leading: Icon(MdiIcons.leak),
         title: Text("Sensors"),
         onTap: () => Navigator.of(context).pushNamed("/sensors"),
       ),
       ListTile(
-        leading: Icon(Icons.filter),
+        leading: Icon(MdiIcons.imageFilter),
         title: Text("Filters"),
         onTap: () => Navigator.of(context).pushNamed("/filters"),
       ),

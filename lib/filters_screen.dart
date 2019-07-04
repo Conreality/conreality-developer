@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 
 import 'filters.dart' show filters;
 import 'main_drawer.dart' show MainDrawer;
@@ -49,7 +50,7 @@ class FilterList extends StatelessWidget {
         final filter = filters[index];
         return GestureDetector(
           child: ListTile(
-            leading: Icon(filter.icon ?? Icons.filter_none),
+            leading: Icon(filter.icon ?? MdiIcons.imageFilter),
             title: Text(filter.label),
             subtitle: Text(filter.summary),
             trailing: Icon(filter.isActive ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),
