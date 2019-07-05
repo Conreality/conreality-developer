@@ -4,4 +4,4 @@ import 'package:conreality_scripts/conreality_scripts.dart' show Script, Scripts
 
 ////////////////////////////////////////////////////////////////////////////////
 
-final List<Script> scripts = Scripts.all.values;
+final List<Script> scripts = Scripts.all.values.toList();
