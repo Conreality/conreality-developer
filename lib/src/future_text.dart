@@ -20,7 +20,7 @@ class FutureText extends StatelessWidget {
           case ConnectionState.waiting:
             return Container();
           case ConnectionState.done:
-            return Text(snapshot.hasError ? snapshot.error.toString() : snapshot.data);
+            return Text((snapshot.hasError ? snapshot.error.toString() : snapshot.data) ?? "");
         }
         return null; // unreachable
       },

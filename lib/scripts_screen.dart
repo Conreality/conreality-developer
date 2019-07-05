@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
-import 'package:conreality_scripts/conreality_scripts.dart' show Scripts;
 
 import 'main_drawer.dart' show MainDrawer;
 import 'scripts.dart' show scripts;
@@ -50,7 +49,7 @@ class ScriptList extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       itemCount: scripts.length,
       itemBuilder: (final BuildContext context, final int index) {
-        final script = Scripts.all[scripts[index].label];
+        final script = scripts[index];
         return GestureDetector(
           child: ListTile(
             leading: Icon(MdiIcons.script),
