@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-import 'package:flutter/material.dart' show Icons, IconData;
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
+import 'package:flutter/material.dart' show IconData;
+import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
 import 'plugins/headset_screen.dart';
 
@@ -18,5 +18,5 @@ class PluginInfo {
 ////////////////////////////////////////////////////////////////////////////////
 
 final List<PluginInfo> plugins = const <PluginInfo>[
-  PluginInfo(MdiIcons.headset, "Headset", "0.0.1"), // TODO: icon
+  PluginInfo(ConrealityIcons.headset, "Headset", "0.0.1"), // TODO: icon
 ];

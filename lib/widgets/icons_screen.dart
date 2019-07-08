@@ -2,22 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:conreality_icons/conreality_icons.dart';
+import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-class IconsScreen extends StatefulWidget {
+class IconsScreen extends StatelessWidget {
   static const route = "/widgets/icons";
 
   IconsScreen({Key key}) : super(key: key);
 
-  @override
-  State<IconsScreen> createState() => _IconsState();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-class _IconsState extends State<IconsScreen> {
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
@@ -26,7 +19,9 @@ class _IconsState extends State<IconsScreen> {
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Container()), // TODO
+      body: Center(
+        child: Container(), // TODO
+      ),
     );
   }
 }

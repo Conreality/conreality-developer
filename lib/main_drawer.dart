@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
+import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 import 'package:package_info/package_info.dart' show PackageInfo;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -25,27 +25,27 @@ class _MainDrawerState extends State<MainDrawer> {
   Widget build(final BuildContext context) {
     final List<Widget> items = <Widget>[
       ListTile(
-        leading: Icon(MdiIcons.widgets),
+        leading: Icon(ConrealityIcons.widget),
         title: Text("Widgets"),
         onTap: () => Navigator.of(context).pushNamed("/widgets"),
       ),
       ListTile(
-        leading: Icon(MdiIcons.videoInputComponent),
+        leading: Icon(ConrealityIcons.plugin),
         title: Text("Plugins"),
         onTap: () => Navigator.of(context).pushNamed("/plugins"),
       ),
       ListTile(
-        leading: Icon(MdiIcons.script),
+        leading: Icon(ConrealityIcons.script),
         title: Text("Scripts"),
         onTap: () => Navigator.of(context).pushNamed("/scripts"),
       ),
       ListTile(
-        leading: Icon(MdiIcons.leak),
+        leading: Icon(ConrealityIcons.sensor),
         title: Text("Sensors"),
         onTap: () => Navigator.of(context).pushNamed("/sensors"),
       ),
       ListTile(
-        leading: Icon(MdiIcons.imageFilter),
+        leading: Icon(ConrealityIcons.filter),
         title: Text("Filters"),
         onTap: () => Navigator.of(context).pushNamed("/filters"),
       ),

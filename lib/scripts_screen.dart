@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
+import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
 import 'main_drawer.dart' show MainDrawer;
 import 'scripts.dart' show scripts;
@@ -52,7 +52,7 @@ class ScriptList extends StatelessWidget {
         final script = scripts[index];
         return GestureDetector(
           child: ListTile(
-            leading: Icon(MdiIcons.script),
+            leading: Icon(ConrealityIcons.script),
             title: FutureText(script.label),
             subtitle: FutureText(script.summary),
             trailing: Icon(false ? Icons.check_box : Icons.check_box_outline_blank, color: Theme.of(context).disabledColor),

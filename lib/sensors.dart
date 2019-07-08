@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-import 'package:flutter/material.dart' show Icons, IconData;
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
+import 'package:flutter/material.dart' show IconData;
+import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -17,14 +17,14 @@ class SensorInfo {
 ////////////////////////////////////////////////////////////////////////////////
 
 final List<SensorInfo> sensors = const <SensorInfo>[
-  SensorInfo(MdiIcons.microphone, "Audio", "Using the built-in microphone.", true),
-  SensorInfo(MdiIcons.battery, "Battery", "Using the built-in battery meter.", true),
-  SensorInfo(MdiIcons.compassOutline, "Compass", "Using the built-in magnetometer.", true),
-  SensorInfo(MdiIcons.crosshairsGps, "GPS", "Using the built-in GPS receiver.", true),
-  SensorInfo(MdiIcons.heartPulse, "Heartrate", "A heart-rate strap or smartband.", false), // TODO: icon
-  SensorInfo(MdiIcons.waterPercent, "Humidity", "Not available.", false), // TODO: icon, present?
-  SensorInfo(MdiIcons.motionSensor, "Motion", "Using the built-in accelerometer.", true),
-  SensorInfo(MdiIcons.nfcVariant, "NFC", "Using the built-in NFC reader.", true), // TODO: present?
-  SensorInfo(MdiIcons.temperatureCelsius, "Temperature", "Not available.", false), // TODO: icon, present?
-  SensorInfo(MdiIcons.video, "Video", "Using the built-in camera.", true),
+  SensorInfo(ConrealityIcons.microphone, "Audio", "Using the built-in microphone.", true),
+  SensorInfo(ConrealityIcons.battery, "Battery", "Using the built-in battery meter.", true),
+  SensorInfo(ConrealityIcons.compass, "Compass", "Using the built-in magnetometer.", true),
+  SensorInfo(ConrealityIcons.gps, "GPS", "Using the built-in GPS receiver.", true),
+  SensorInfo(ConrealityIcons.pulse, "Heartrate", "A heart-rate strap or smartband.", false),
+  SensorInfo(ConrealityIcons.humidity, "Humidity", "Not available.", false), // TODO: present?
+  SensorInfo(ConrealityIcons.motion, "Motion", "Using the built-in accelerometer.", true),
+  SensorInfo(ConrealityIcons.nfc, "NFC", "Using the built-in NFC reader.", true), // TODO: present?
+  SensorInfo(ConrealityIcons.temperature, "Temperature", "Not available.", false), // TODO: present?
+  SensorInfo(ConrealityIcons.video, "Video", "Using the built-in camera.", true),
 ];

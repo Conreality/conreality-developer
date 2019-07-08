@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-import 'package:flutter/material.dart' show Icons, IconData;
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
+import 'package:flutter/material.dart' show IconData;
+import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -17,9 +17,9 @@ class FilterInfo {
 ////////////////////////////////////////////////////////////////////////////////
 
 final List<FilterInfo> filters = const <FilterInfo>[
-  FilterInfo(MdiIcons.vectorPolyline, "Edge detection", "Not available at present.", false), // TODO: better icon?
-  FilterInfo(MdiIcons.face, "Face detection", "Not available at present.", false),
-  FilterInfo(MdiIcons.faceRecognition, "Face recognition", "Not available at present.", false),
-  FilterInfo(MdiIcons.vectorEllipse, "Object recognition", "Not available at present.", false), // TODO: better icon?
-  FilterInfo(MdiIcons.goKartTrack, "Object tracking", "Not available at present.", false),
+  FilterInfo(ConrealityIcons.edgeDetection, "Edge detection", "Not available at present.", false),
+  FilterInfo(ConrealityIcons.faceDetection, "Face detection", "Not available at present.", false),
+  FilterInfo(ConrealityIcons.faceRecognition, "Face recognition", "Not available at present.", false),
+  FilterInfo(ConrealityIcons.objectRecognition, "Object recognition", "Not available at present.", false),
+  FilterInfo(ConrealityIcons.objectTracking, "Object tracking", "Not available at present.", false),
 ];

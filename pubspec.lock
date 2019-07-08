@@ -48,7 +48,7 @@ packages:
     description:
       path: conreality_camera
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -57,7 +57,7 @@ packages:
     description:
       path: conreality_chat
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -66,7 +66,7 @@ packages:
     description:
       path: conreality_compass
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -75,7 +75,7 @@ packages:
     description:
       path: conreality_countdown
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -84,7 +84,7 @@ packages:
     description:
       path: conreality_dosimeter
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -93,7 +93,7 @@ packages:
     description:
       path: conreality_fonts
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "1.0.2"
@@ -102,7 +102,7 @@ packages:
     description:
       path: conreality_gamepad
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -111,7 +111,7 @@ packages:
     description:
       path: conreality_headset
       ref: HEAD
-      resolved-ref: "09622a0b660be54421fdd36cbd059901c573b880"
+      resolved-ref: "7e3c19f391b986a4177f898615657188d96eb051"
       url: "https://github.com/conreality/conreality-plugins.git"
     source: git
     version: "0.0.1"
@@ -120,16 +120,16 @@ packages:
     description:
       path: conreality_icons
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
-    version: "0.0.1"
+    version: "1.0.0"
   conreality_joystick:
     dependency: "direct main"
     description:
       path: conreality_joystick
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -138,7 +138,7 @@ packages:
     description:
       path: conreality_login
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -147,7 +147,7 @@ packages:
     description:
       path: conreality_logo
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -156,7 +156,7 @@ packages:
     description:
       path: conreality_map
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -165,7 +165,7 @@ packages:
     description:
       path: conreality_replay
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
@@ -181,7 +181,7 @@ packages:
     description:
       path: conreality_tracker
       ref: HEAD
-      resolved-ref: c7ee29bb48c3ba8e9d473ddc6dae1f1179476ab1
+      resolved-ref: cea142273d77a5a7ab83ccb70c647bcd08b7c837
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
