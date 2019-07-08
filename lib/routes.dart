@@ -12,6 +12,7 @@ import 'widgets/camera_screen.dart' show CameraScreen;
 import 'widgets/chat_screen.dart' show ChatScreen;
 import 'widgets/compass_screen.dart' show CompassScreen;
 import 'widgets/countdown_screen.dart' show CountdownScreen;
+import 'widgets/detector_screen.dart' show DetectorScreen;
 import 'widgets/dosimeter_screen.dart' show DosimeterScreen;
 import 'widgets/fonts_screen.dart' show FontsScreen;
 import 'widgets/gamepad_screen.dart' show GamepadScreen;
@@ -21,6 +22,7 @@ import 'widgets/login_screen.dart' show LoginScreen;
 import 'widgets/logo_screen.dart' show LogoScreen;
 import 'widgets/map_screen.dart' show MapScreen;
 import 'widgets/replay_screen.dart' show ReplayScreen;
+import 'widgets/scene_screen.dart' show SceneScreen;
 import 'widgets/tracker_screen.dart' show TrackerScreen;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +39,7 @@ Map<String, WidgetBuilder> appRoutes = {
   ChatScreen.route: (_) => ChatScreen(),
   CompassScreen.route: (_) => CompassScreen(),
   CountdownScreen.route: (_) => CountdownScreen(),
+  DetectorScreen.route: (_) => DetectorScreen(),
   DosimeterScreen.route: (_) => DosimeterScreen(),
   FontsScreen.route: (_) => FontsScreen(),
   GamepadScreen.route: (_) => GamepadScreen(),
@@ -46,5 +49,6 @@ Map<String, WidgetBuilder> appRoutes = {
   LogoScreen.route: (_) => LogoScreen(),
   MapScreen.route: (_) => MapScreen(),
   ReplayScreen.route: (_) => ReplayScreen(),
+  SceneScreen.route: (_) => SceneScreen(),
   TrackerScreen.route: (_) => TrackerScreen(),
 };
