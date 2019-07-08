@@ -169,6 +169,15 @@ packages:
       url: "https://github.com/conreality/conreality-widgets.git"
     source: git
     version: "0.0.1"
+  conreality_pulse:
+    dependency: "direct main"
+    description:
+      path: conreality_pulse
+      ref: HEAD
+      resolved-ref: "370baf8ea913c7a234f2241550c9e062a67d277e"
+      url: "https://github.com/conreality/conreality-plugins.git"
+    source: git
+    version: "0.0.1"
   conreality_replay:
     dependency: "direct main"
     description:
