@@ -17,6 +17,10 @@ class IconsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Icons"),
         actions: <Widget>[
+          IconButton(
+            icon: Text(ConrealityIcons.version),
+            onPressed: null,
+          ),
         ].where((element) => element != null).toList(),
       ),
       body: Center(
