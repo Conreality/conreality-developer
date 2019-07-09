@@ -120,7 +120,7 @@ packages:
     description:
       path: conreality_headset
       ref: HEAD
-      resolved-ref: b4178518e11dd30aa080a66dda9e92001683cc11
+      resolved-ref: a36874b8eae82cf5d9a2a714ef5024b0b3336cee
       url: "https://github.com/conreality/conreality-plugins.git"
     source: git
     version: "0.0.1"
@@ -174,7 +174,7 @@ packages:
     description:
       path: conreality_pulse
       ref: HEAD
-      resolved-ref: b4178518e11dd30aa080a66dda9e92001683cc11
+      resolved-ref: a36874b8eae82cf5d9a2a714ef5024b0b3336cee
       url: "https://github.com/conreality/conreality-plugins.git"
     source: git
     version: "0.0.1"

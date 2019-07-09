@@ -56,7 +56,9 @@ class PluginList extends StatelessWidget {
             trailing: Icon(Icons.check_box, color: Theme.of(context).disabledColor),
           ),
           onTap: () {
-            // TODO
+            if (plugin.route != null) {
+              Navigator.of(context).pushNamed(plugin.route);
+            }
           },
         );
       },
