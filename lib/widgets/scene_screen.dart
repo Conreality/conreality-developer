@@ -26,7 +26,9 @@ class _SceneState extends State<SceneScreen> {
         actions: <Widget>[
         ].where((element) => element != null).toList(),
       ),
-      body: Center(child: Container()), // TODO
+      body: Center(
+        child: Scene(),
+      ),
     );
   }
 }

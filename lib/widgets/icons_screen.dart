@@ -23,9 +23,37 @@ class IconsScreen extends StatelessWidget {
           ),
         ].where((element) => element != null).toList(),
       ),
-      body: Center(
-        child: Container(), // TODO
-      ),
+      body: Center(child: IconList()),
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+class IconList extends StatelessWidget {
+  @override
+  Widget build(final BuildContext context) {
+    final iconMap = ConrealityIcons.toMap();
+    final iconKeys = iconMap.keys.toList();
+    return ListView.separated(
+      padding: EdgeInsets.all(8.0),
+      itemCount: iconKeys.length,
+      itemBuilder: (final BuildContext context, final int index) {
+        final iconKey = iconKeys[index];
+        final icon = iconMap[iconKey];
+        return GestureDetector(
+          child: ListTile(
+            leading: Icon(icon),
+            title: Text(iconKey),
+          ),
+          onTap: () {
+            // TODO: zoom in on icon?
+          },
+        );
+      },
+      separatorBuilder: (final BuildContext context, final int index) {
+        return Divider();
+      },
     );
   }
 }
