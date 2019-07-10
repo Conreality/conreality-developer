@@ -8,7 +8,7 @@ import 'sensors_screen.dart' show SensorsScreen;
 import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
 
-import 'plugins/headset_screen.dart'; // TODO
+import 'plugins/headset_screen.dart' show HeadsetScreen;
 import 'plugins/pulse_screen.dart' show PulseScreen;
 
 import 'widgets/camera_screen.dart' show CameraScreen;
@@ -38,6 +38,7 @@ Map<String, WidgetBuilder> appRoutes = {
   ScriptsScreen.route: (_) => ScriptsScreen(),
   WidgetsScreen.route: (_) => WidgetsScreen(),
   // Plugins
+  HeadsetScreen.route: (_) => HeadsetScreen(),
   PulseScreen.route: (_) => PulseScreen(),
   // Widgets
   CameraScreen.route: (_) => CameraScreen(),
