@@ -120,7 +120,7 @@ packages:
     description:
       path: conreality_headset
       ref: HEAD
-      resolved-ref: a36874b8eae82cf5d9a2a714ef5024b0b3336cee
+      resolved-ref: "6ffb9a1f9b429a5a025df246cdfd91c52db51f31"
       url: "https://github.com/conreality/conreality-plugins.git"
     source: git
     version: "0.0.1"
@@ -172,12 +172,10 @@ packages:
   conreality_pulse:
     dependency: "direct main"
     description:
-      path: conreality_pulse
-      ref: HEAD
-      resolved-ref: a36874b8eae82cf5d9a2a714ef5024b0b3336cee
-      url: "https://github.com/conreality/conreality-plugins.git"
-    source: git
-    version: "0.0.1"
+      name: conreality_pulse
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   conreality_replay:
     dependency: "direct main"
     description:
