@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_background_geolocation/flutter_background_geolocation.dart' as bg;
 
+import 'plugins_screen.dart' show PluginsScreen;
 import 'routes.dart' show appRoutes;
-import 'widgets_screen.dart' show WidgetsScreen;
 import 'src/gdk.dart' show GDK, GDKThread;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ class _AppState extends State<App> {
       ),
       home: (_error != null)
           ? Text(_error.toString())
-          : WidgetsScreen(), // TODO
+          : PluginsScreen(), // TODO
       routes: routes,
     );
   }
