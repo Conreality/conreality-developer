@@ -121,7 +121,7 @@ packages:
       name: conreality_headset
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   conreality_icons:
     dependency: "direct main"
     description:
@@ -233,7 +233,7 @@ packages:
       name: flutter_background_geolocation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.10"
+    version: "1.0.11"
   flutter_test:
     dependency: "direct dev"
     description: flutter

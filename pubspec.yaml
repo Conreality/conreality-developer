@@ -30,11 +30,11 @@ dependencies:
 
   # See: https://github.com/transistorsoft/flutter_background_geolocation
   # See: https://pub.dev/packages/flutter_background_geolocation
-  flutter_background_geolocation: ^1.0.10
+  flutter_background_geolocation: ^1.0.11
 
   # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_headset
   # See: https://pub.dev/packages/conreality_headset
-  conreality_headset: ^0.1.0
+  conreality_headset: ^0.1.1
 
   # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_pulse
   # See: https://pub.dev/packages/conreality_pulse
