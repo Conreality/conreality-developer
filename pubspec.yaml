@@ -34,7 +34,7 @@ dependencies:
 
   # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_headset
   # See: https://pub.dev/packages/conreality_headset
-  conreality_headset: ^0.1.1
+  conreality_headset: ^0.1.2
 
   # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_pulse
   # See: https://pub.dev/packages/conreality_pulse
