@@ -32,6 +32,7 @@ class _HeadsetState extends State<HeadsetScreen> {
   }
 
   void _initStream() async {
+    await Headset.speak("Hello, world!");
     final Stream<HeadsetEvent> stream = await Headset.subscribe();
     if (stream != null) {
       _subscription = stream.listen((final HeadsetEvent event) {
