@@ -32,6 +32,10 @@ dependencies:
   # See: https://pub.dev/packages/flutter_background_geolocation
   flutter_background_geolocation: ^1.0.11
 
+  # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_beacon
+  # See: https://pub.dev/packages/conreality_beacon
+  conreality_beacon: ^0.0.1
+
   # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_headset
   # See: https://pub.dev/packages/conreality_headset
   conreality_headset: ^0.1.4
@@ -42,7 +46,7 @@ dependencies:
 
   # See: https://github.com/conreality/conreality-plugins/tree/master/conreality_scripts
   # See: https://pub.dev/packages/conreality_scripts
-  conreality_scripts: ^1.0.1
+  conreality_scripts: ^1.0.1+20190705.1
 
   # See: https://github.com/conreality/conreality-widgets/tree/master/conreality_camera
   conreality_camera:
