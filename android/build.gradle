@@ -2,7 +2,7 @@ buildscript {
     ext {
         compileSdkVersion   = 28                // Android 9.0 (Pie)
         targetSdkVersion    = 28                // Android 9.0 (Pie)
-        minSdkVersion       = 23                // Android 6.0 (Marshmallow)
+        minSdkVersion       = 21                // Android 5.0 (Lollipop)
         supportLibVersion   = "1.0.2"           // or higher
         playServicesLocationVersion = "16.0.0"  // or higher
     }
@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1' // or higher
+        classpath 'com.android.tools.build:gradle:3.3.2' // or higher
     }
 }
 
