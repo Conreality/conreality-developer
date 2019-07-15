@@ -1,7 +1,10 @@
 /* This is free and unencumbered software released into the public domain. */
 
+import 'dart:async' show Stream;
+
 import 'package:flutter/material.dart';
 
+import 'package:conreality_beacon/conreality_beacon.dart';
 import 'package:conreality_fonts/conreality_fonts.dart' show B612;
 import 'package:conreality_tracker/conreality_tracker.dart' show DistanceTracker;
 
@@ -24,14 +27,28 @@ class _TrackerState extends State<TrackerScreen> {
   @override
   void initState() {
     super.initState();
-    _stream = Stream<double>.periodic(Duration(seconds: 1), (int computationCount) {
-      return computationCount.toDouble(); // TODO
+    _initStream();
+  }
+
+  void _initStream() async {
+    final Stream<BeaconScan> stream = await Beacons.scan();
+    if (stream == null) return;
+    setState(() {
+      _stream = stream
+          .where((final BeaconScan scan) => scan.isNotEmpty)
+          .map((final BeaconScan scan) {
+            final beacons = scan.beacons;
+            beacons.sort(
+                (b1, b2) => b1.estimatedDistance.compareTo(b2.estimatedDistance));
+            return beacons.first.estimatedDistance;
+          });
     });
   }
 
   @override
-  void dispose() async {
+  void dispose() {
     super.dispose();
+    _stream = null;
   }
 
   @override
@@ -39,8 +56,7 @@ class _TrackerState extends State<TrackerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Tracker"),
-        actions: <Widget>[
-        ].where((element) => element != null).toList(),
+        actions: <Widget>[].where((element) => element != null).toList(),
       ),
       body: Center(
         child: DistanceTracker(
