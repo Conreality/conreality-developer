@@ -2,6 +2,7 @@
 
 package app.conreality.developer;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -11,23 +12,25 @@ import io.flutter.plugin.common.PluginRegistry.PluginRegistrantCallback;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** ApplicationPlugin */
-public class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver {
+public final class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver {
   private static final String TAG = "ApplicationPlugin";
   public static final String CHANNEL = "app.conreality/developer";
 
   private static PluginRegistrantCallback pluginRegistrantCallback;
   private long threadID;
 
-  static void setPluginRegistrant(final PluginRegistrantCallback callback) {
+  static void setPluginRegistrant(final @NonNull PluginRegistrantCallback callback) {
     pluginRegistrantCallback = callback;
   }
 
-  ApplicationPlugin(final Registrar registrar) {
+  ApplicationPlugin(final @NonNull Registrar registrar) {
     super(registrar);
   }
 
   /** Plugin registration. */
-  public static void registerWith(final PluginRegistry registry) {
+  public static void registerWith(final @NonNull PluginRegistry registry) {
+    assert(registry != null);
+
     final String key = ApplicationPlugin.class.getCanonicalName();
     if (registry.hasPlugin(key)) {
       return; // already registered with the registry
@@ -36,7 +39,7 @@ public class ApplicationPlugin extends FlutterMethodCallHandler implements Defau
   }
 
   /** Plugin registration. */
-  public static void registerWith(final Registrar registrar) {
+  public static void registerWith(final @NonNull Registrar registrar) {
     assert(registrar != null);
 
     (new MethodChannel(registrar.messenger(), CHANNEL))
@@ -44,7 +47,7 @@ public class ApplicationPlugin extends FlutterMethodCallHandler implements Defau
   }
 
   @Override
-  public void onMethodCall(final MethodCall call, final Result result) {
+  public void onMethodCall(final @NonNull MethodCall call, final @NonNull Result result) {
     assert(call != null);
     assert(result != null);
 

@@ -6,16 +6,19 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import androidx.annotation.NonNull;
 
 /** HeadsetSpeaker */
 final class HeadsetSpeaker implements Headset {
   private static final String TAG = "ConrealityDeveloper";
   private static final String SERVICE_CLASS = "app.conreality.plugins.headset.HeadsetService";
 
-  private final Context context;
-  private final Intent intent;
+  private final @NonNull Context context;
+  private final @NonNull Intent intent;
 
-  public HeadsetSpeaker(final Context context) {
+  public HeadsetSpeaker(final @NonNull Context context) {
+    assert(context != null);
+
     if (Log.isLoggable(TAG, Log.DEBUG)) {
       Log.d(TAG, String.format("Resolving the headset service class %s...", SERVICE_CLASS));
     }
@@ -33,7 +36,9 @@ final class HeadsetSpeaker implements Headset {
   }
 
   @Override
-  public void speak(final String message) {
+  public void speak(final @NonNull String message) {
+    assert(message != null);
+
     if (Log.isLoggable(TAG, Log.INFO)) {
       Log.i(TAG, String.format("Speaking into the headset: \"%s\"", message));
     }
@@ -44,7 +49,9 @@ final class HeadsetSpeaker implements Headset {
     }
   }
 
-  private Intent makeIntent(final String action) {
+  private Intent makeIntent(final @NonNull String action) {
+    assert(action != null);
+
     return this.intent.cloneFilter().setAction("speak");
   }
 }

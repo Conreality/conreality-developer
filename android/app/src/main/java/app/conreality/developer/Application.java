@@ -10,7 +10,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant;
 import com.transistorsoft.flutter.backgroundfetch.BackgroundFetchPlugin;
 import com.transistorsoft.flutter.backgroundgeolocation.FLTBackgroundGeolocationPlugin;
 
-public class Application extends FlutterApplication implements PluginRegistrantCallback {
+public final class Application extends FlutterApplication implements PluginRegistrantCallback {
   @Override
   public void onCreate() {
     super.onCreate();

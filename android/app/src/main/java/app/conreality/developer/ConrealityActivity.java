@@ -3,6 +3,8 @@
 package app.conreality.developer;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -11,7 +13,7 @@ import io.flutter.app.FlutterActivity;
 
 /** ConrealityActivity */
 public class ConrealityActivity extends FlutterActivity implements LifecycleOwner {
-  protected final LifecycleRegistry lifecycleRegistry;
+  protected final @NonNull LifecycleRegistry lifecycleRegistry;
 
   public ConrealityActivity() {
     super();
@@ -20,7 +22,7 @@ public class ConrealityActivity extends FlutterActivity implements LifecycleOwne
 
   /** Implements Activity#onCreate(). */
   @Override
-  protected void onCreate(final Bundle savedInstanceState) {
+  protected void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
   }
@@ -68,16 +70,17 @@ public class ConrealityActivity extends FlutterActivity implements LifecycleOwne
   }
 
   /** Implements LifecycleOwner#getLifecycle(). */
+  @NonNull
   @Override
   public Lifecycle getLifecycle() {
     return new Lifecycle() {
       public Lifecycle.State getCurrentState() {
         return lifecycleRegistry.getCurrentState();
       }
-      public void addObserver(final LifecycleObserver observer) {
+      public void addObserver(final @NonNull LifecycleObserver observer) {
         lifecycleRegistry.addObserver(observer);
       }
-      public void removeObserver(final LifecycleObserver observer) {
+      public void removeObserver(final @NonNull LifecycleObserver observer) {
         lifecycleRegistry.removeObserver(observer);
       }
     };
