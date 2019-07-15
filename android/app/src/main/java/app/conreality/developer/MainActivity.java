@@ -3,12 +3,11 @@
 package app.conreality.developer;
 
 import android.os.Bundle;
-import io.flutter.app.FlutterActivity;
-import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 
 /** MainActivity */
-public class MainActivity extends FlutterActivity {
+public final class MainActivity extends ConrealityActivity {
+  /** Implements Activity#onCreate(). */
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

@@ -2,6 +2,7 @@
 
 package app.conreality.developer;
 
+import androidx.lifecycle.DefaultLifecycleObserver;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
@@ -9,10 +10,8 @@ import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.PluginRegistrantCallback;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-import java.io.IOException;
-
 /** ApplicationPlugin */
-public class ApplicationPlugin extends FlutterMethodCallHandler {
+public class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver {
   private static final String TAG = "ApplicationPlugin";
   public static final String CHANNEL = "app.conreality/developer";
 
