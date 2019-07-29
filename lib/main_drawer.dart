@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 import 'package:package_info/package_info.dart' show PackageInfo;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +25,11 @@ class _MainDrawerState extends State<MainDrawer> {
   @override
   Widget build(final BuildContext context) {
     final List<Widget> items = <Widget>[
+      ListTile(
+        leading: Icon(MdiIcons.apps),
+        title: Text("Features"),
+        onTap: () => Navigator.of(context).pushNamed("/features"),
+      ),
       ListTile(
         leading: Icon(ConrealityIcons.widget),
         title: Text("Widgets"),

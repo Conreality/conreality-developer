@@ -2,11 +2,14 @@
 
 import 'package:flutter/material.dart' show WidgetBuilder;
 
+import 'features_screen.dart' show FeaturesScreen;
 import 'filters_screen.dart' show FiltersScreen;
 import 'plugins_screen.dart' show PluginsScreen;
 import 'sensors_screen.dart' show SensorsScreen;
 import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
+
+import 'features/chat_feature.dart' show ChatFeature;
 
 import 'plugins/beacon_screen.dart' show BeaconScreen;
 import 'plugins/headset_screen.dart' show HeadsetScreen;
@@ -33,11 +36,14 @@ import 'widgets/tracker_screen.dart' show TrackerScreen;
 
 Map<String, WidgetBuilder> appRoutes = {
   // Drawer
+  FeaturesScreen.route: (_) => FeaturesScreen(),
   FiltersScreen.route: (_) => FiltersScreen(),
   PluginsScreen.route: (_) => PluginsScreen(),
   SensorsScreen.route: (_) => SensorsScreen(),
   ScriptsScreen.route: (_) => ScriptsScreen(),
   WidgetsScreen.route: (_) => WidgetsScreen(),
+  // Features
+  ChatFeature.route: (_) => ChatFeature(),
   // Plugins
   BeaconScreen.route: (_) => BeaconScreen(),
   HeadsetScreen.route: (_) => HeadsetScreen(),
