@@ -5,6 +5,9 @@
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_BACKGROUND_LOCATION -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_COARSE_LOCATION -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_FINE_LOCATION -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
@@ -28,6 +31,9 @@
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#CAMERA -->
     <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!-- See: https://developer.android.com/reference/android/Manifest.permission#CHANGE_WIFI_STATE -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#FOREGROUND_SERVICE -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
