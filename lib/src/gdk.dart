@@ -15,6 +15,38 @@ abstract class GDK {
   static Future<String> get version async {
     return await _global.invokeMethod('getVersion');
   }
+
+  static Future<Map<String, String>> getPeers() async {
+    return Map<String, String>.from(await _global.invokeMethod('getPeers') as Map<dynamic, dynamic>);
+  }
+
+  static Future<bool> requestPermissions() {
+    return _global.invokeMethod('requestPermissions');
+  }
+
+  static Future<bool> start() {
+    return _global.invokeMethod('start');
+  }
+
+  static Future<bool> stop() {
+    return _global.invokeMethod('stop');
+  }
+
+  static Future<bool> startAdvertising() {
+    return _global.invokeMethod('startAdvertising');
+  }
+
+  static Future<bool> stopAdvertising() {
+    return _global.invokeMethod('stopAdvertising');
+  }
+
+  static Future<bool> startDiscovery() {
+    return _global.invokeMethod('startDiscovery');
+  }
+
+  static Future<bool> stopDiscovery() {
+    return _global.invokeMethod('stopDiscovery');
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

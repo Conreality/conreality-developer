@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart' show IconData;
 import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 
 import 'features/chat_feature.dart' show ChatFeature;
+import 'features/discover_feature.dart' show DiscoverFeature;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -19,5 +21,6 @@ class FeatureInfo {
 ////////////////////////////////////////////////////////////////////////////////
 
 final List<FeatureInfo> features = <FeatureInfo>[
-  FeatureInfo(ConrealityIcons.chat, ChatFeature.route, "Chat locally", "Chat with others on the local Wi-Fi network."),
+  FeatureInfo(MdiIcons.scanner, DiscoverFeature.route, "Discover peers", "Discover peers on the local Wi-Fi network."),
+  FeatureInfo(ConrealityIcons.chat, ChatFeature.route, "Chat locally", "Chat with peers on the local Wi-Fi network."),
 ];

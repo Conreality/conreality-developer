@@ -10,6 +10,7 @@ import 'scripts_screen.dart' show ScriptsScreen;
 import 'widgets_screen.dart' show WidgetsScreen;
 
 import 'features/chat_feature.dart' show ChatFeature;
+import 'features/discover_feature.dart' show DiscoverFeature;
 
 import 'plugins/beacon_screen.dart' show BeaconScreen;
 import 'plugins/headset_screen.dart' show HeadsetScreen;
@@ -44,6 +45,7 @@ Map<String, WidgetBuilder> appRoutes = {
   WidgetsScreen.route: (_) => WidgetsScreen(),
   // Features
   ChatFeature.route: (_) => ChatFeature(),
+  DiscoverFeature.route: (_) => DiscoverFeature(),
   // Plugins
   BeaconScreen.route: (_) => BeaconScreen(),
   HeadsetScreen.route: (_) => HeadsetScreen(),

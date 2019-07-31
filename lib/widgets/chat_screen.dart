@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:conreality_chat/conreality_chat.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart' show MdiIcons;
 
 ////////////////////////////////////////////////////////////////////////////////
 
