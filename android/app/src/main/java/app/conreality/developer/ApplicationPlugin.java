@@ -61,7 +61,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
       case "spawnThread": {
         this.threadID++;
-        new ThreadHandler(this.registrar, this.threadID);
+        new ScriptThreadHandler(this.registrar, this.threadID);
         result.success(this.threadID);
         break;
       }

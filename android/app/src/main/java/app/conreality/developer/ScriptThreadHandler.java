@@ -16,16 +16,16 @@ import java.util.function.Supplier;
 
 /** ThreadHandler */
 @SuppressWarnings("unchecked")
-final class ThreadHandler extends FlutterMethodCallHandler {
-  private static final String TAG = "ThreadHandler";
+final class ScriptThreadHandler extends FlutterMethodCallHandler {
+  private static final String TAG = "ScriptThreadHandler";
   public static final String CHANNEL_PREFIX = ApplicationPlugin.CHANNEL;
 
   private final MethodChannel channel;
   private final ExecutorService executor;
   private final State state;
 
-  ThreadHandler(final Registrar registrar,
-                final long threadID) {
+  ScriptThreadHandler(final Registrar registrar,
+                      final long threadID) {
     super(registrar);
     final String channelName = String.format("%s/#%d", CHANNEL_PREFIX, threadID);
     this.channel = new MethodChannel(registrar.messenger(), channelName);
