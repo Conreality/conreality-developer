@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
 import '../src/gdk.dart' show GDK;
+import '../src/sdk.dart' show Peer;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +24,7 @@ class DiscoverFeature extends StatefulWidget {
 
 class _DiscoverFeatureState extends State<DiscoverFeature> {
   Timer _timer;
-  Map<String, String> _peers;
+  Set<Peer> _peers;
 
   @override
   void initState() {
@@ -59,7 +60,7 @@ class _DiscoverFeatureState extends State<DiscoverFeature> {
         actions: <Widget>[].where((element) => element != null).toList(),
       ),
       body: Center(
-        child: PeerList(_peers),
+        child: PeerList(_peers?.toList()),
       ),
     );
   }
@@ -70,7 +71,7 @@ class _DiscoverFeatureState extends State<DiscoverFeature> {
 class PeerList extends StatelessWidget {
   PeerList(this.peers, {Key key}) : super(key: key);
 
-  Map<String, String> peers;
+  List<Peer> peers;
 
   @override
   Widget build(final BuildContext context) {
@@ -78,13 +79,13 @@ class PeerList extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       itemCount: peers?.length ?? 0,
       itemBuilder: (final BuildContext context, final int index) {
-        final peerID = peers.keys.elementAt(index);
-        final peerName = peers[peerID];
+        final peer = peers.elementAt(index);
         return GestureDetector(
           child: ListTile(
             leading: Icon(Icons.person),
-            title: Text(peerName ?? "Unknown"),
-            subtitle: Text(peerID ?? "N/A"),
+            title: Text(peer.name ?? "Unknown"),
+            subtitle: Text(peer.id ?? "N/A"),
+            trailing: Text(peer.status.toString()), // TODO
           ),
           onTap: () {},
         );

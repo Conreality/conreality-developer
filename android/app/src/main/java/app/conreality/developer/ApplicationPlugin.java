@@ -31,9 +31,13 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.PluginRegistrantCallback;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import org.conreality.sdk.Peer;
+import org.conreality.sdk.PeerStatus;
 
 /** ApplicationPlugin */
 public final class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver {
@@ -45,7 +49,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
   private static PluginRegistrantCallback pluginRegistrantCallback;
   private long threadID;
-  private Map<String, String> peers = new HashMap<String, String>(); // endpointId => endpointName
+  private Map<String, Peer> peers = new HashMap<String, Peer>();
 
   static void setPluginRegistrant(final @NonNull PluginRegistrantCallback callback) {
     pluginRegistrantCallback = callback;
@@ -88,7 +92,16 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
       }
 
       case "getPeers": {
-        result.success(this.peers);
+        final List<Map<String, Object>> peers = new ArrayList<Map<String, Object>>();
+        for (final Map.Entry<String, Peer> entry : this.peers.entrySet()) {
+          final Peer peer = entry.getValue();
+          final Map<String, Object> peerInfo = new HashMap<String, Object>();
+          peerInfo.put("id", peer.id);
+          peerInfo.put("name", peer.name);
+          peerInfo.put("status", peer.status.ordinal());
+          peers.add(peerInfo);
+        }
+        result.success(peers);
         break;
       }
 
@@ -235,6 +248,8 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
     @Override
     public void onEndpointFound(final @NonNull String endpointId, final DiscoveredEndpointInfo info) {
       Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointFound: endpointId=%s serviceId=%s endpointName=%s", endpointId, info.getServiceId(), info.getEndpointName()));
+      peers.putIfAbsent(endpointId, new Peer(endpointId, info.getEndpointName(), PeerStatus.Discovered));
+
       nearbyConnections()
           .requestConnection(P2P_NICKNAME, endpointId, connectionLifecycle) // TODO: nickname
           .addOnSuccessListener(
@@ -242,7 +257,12 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
               @Override
               public void onSuccess(final Void _unused) {
                 Log.d(TAG, "requestConnection.onSuccess");
-                peers.putIfAbsent(endpointId, null);
+                peers.compute(endpointId, (peerID, peer) -> {
+                  if (peer != null) {
+                    peer.status = PeerStatus.Connecting;
+                  }
+                  return peer;
+                });
               }
             }
         )
@@ -258,37 +278,56 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
     @Override
     public void onEndpointLost(final @NonNull String endpointId) {
       Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointLost: endpointId=%s", endpointId));
-      peers.remove(endpointId);
+
+      peers.compute(endpointId, (peerID, peer) -> {
+        if (peer != null) {
+          peer.status = PeerStatus.Lost;
+        }
+        return peer;
+      });
     }
   };
 
   // See: https://developers.google.com/android/reference/com/google/android/gms/nearby/connection/ConnectionLifecycleCallback
   private final ConnectionLifecycleCallback connectionLifecycle = new ConnectionLifecycleCallback() {
+    // A basic encrypted channel has been created between you and the endpoint.
+    // Both sides are now asked if they wish to accept or reject the connection
+    // before any data can be sent over this channel.
     @Override
     public void onConnectionInitiated(final @NonNull String endpointId, final ConnectionInfo info) {
       Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionInitiated: endpointId=%s endpointName=%s", endpointId, info.getEndpointName()));
       nearbyConnections().acceptConnection(endpointId, payloadCallback); // automatically accept the connection
-      peers.put(endpointId, info.getEndpointName());
+      peers.compute(endpointId, (peerID, peer) -> {
+        if (peer != null) {
+          peer.name = info.getEndpointName();
+          peer.status = PeerStatus.Connecting;
+        }
+        return peer;
+      });
     }
 
+    // Called after both sides have either accepted or rejected the connection.
     @Override
     public void onConnectionResult(final @NonNull String endpointId, final ConnectionResolution result) {
       Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionResult: endpointId=%s result=%d", endpointId, result.getStatus().getStatusCode()));
-      switch (result.getStatus().getStatusCode()) {
-        case ConnectionsStatusCodes.STATUS_OK:
-          break;
-        case ConnectionsStatusCodes.STATUS_CONNECTION_REJECTED:
-          break;
-        case ConnectionsStatusCodes.STATUS_ERROR:
-          break;
-        default:
-      }
+      peers.compute(endpointId, (peerID, peer) -> {
+        if (peer != null) {
+          peer.status = PeerStatus.fromStatus(result.getStatus());
+        }
+        return peer;
+      });
     }
 
+    // Called when a remote endpoint is disconnected or has become unreachable.
     @Override
     public void onDisconnected(final @NonNull String endpointId) {
       Log.w(TAG, String.format("ConnectionLifecycleCallback.onDisconnected: endpointId=%s", endpointId));
-      peers.put(endpointId, null);
+      peers.compute(endpointId, (peerID, peer) -> {
+        if (peer != null) {
+          peer.status = PeerStatus.Disconnected;
+        }
+        return peer;
+      });
     }
   };
 

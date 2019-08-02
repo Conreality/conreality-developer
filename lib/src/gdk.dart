@@ -4,6 +4,8 @@ import 'package:flutter/services.dart' show MethodChannel, PlatformException;
 
 import 'dart:io' show File, IOException;
 
+import 'sdk.dart' show Peer;
+
 ////////////////////////////////////////////////////////////////////////////////
 
 const MethodChannel _global = const MethodChannel('app.conreality/developer');
@@ -16,8 +18,11 @@ abstract class GDK {
     return await _global.invokeMethod('getVersion');
   }
 
-  static Future<Map<String, String>> getPeers() async {
-    return Map<String, String>.from(await _global.invokeMethod('getPeers') as Map<dynamic, dynamic>);
+  static Future<Set<Peer>> getPeers() async {
+    return (await _global.invokeMethod('getPeers') as List<dynamic>)
+        .cast<Map<dynamic, dynamic>>()
+        .map((map) => Peer.fromMap(map))
+        .toSet();
   }
 
   static Future<bool> requestPermissions() {
