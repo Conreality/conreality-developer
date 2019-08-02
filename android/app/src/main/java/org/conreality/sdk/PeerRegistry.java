@@ -19,7 +19,7 @@ public class PeerRegistry {
   }
 
   public void setStatus(final @NonNull String peerID, final @NonNull PeerStatus peerStatus) {
-    this.peers.compute(peerID, (_peerID, peer) -> {
+    this.peers.compute(peerID, (peerID_, peer) -> {
       if (peer != null) {
         peer.status = peerStatus;
       }
@@ -28,7 +28,7 @@ public class PeerRegistry {
   }
 
   public void setName(final @NonNull String peerID, final @NonNull String peerName) {
-    this.peers.compute(peerID, (_peerID, peer) -> {
+    this.peers.compute(peerID, (peerID_, peer) -> {
       if (peer != null) {
         peer.name = peerName;
       }

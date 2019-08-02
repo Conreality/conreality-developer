@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.connection.AdvertisingOptions;
 import com.google.android.gms.nearby.connection.ConnectionInfo;
@@ -72,8 +73,15 @@ public class PeerDiscovery {
         .addOnFailureListener(
             new OnFailureListener() {
               @Override
-              public void onFailure(final @NonNull Exception e) {
-                Log.e(TAG, "startAdvertising.onFailure", e);
+              public void onFailure(final @NonNull Exception error) {
+                if (error instanceof ApiException) {
+                  switch (((ApiException)error).getStatusCode()) {
+                    case ConnectionsStatusCodes.STATUS_ALREADY_ADVERTISING:
+                      Log.w(TAG, "startAdvertising.onFailure: STATUS_ALREADY_ADVERTISING");
+                      return; // nothing to do
+                  }
+                }
+                Log.e(TAG, "startAdvertising.onFailure", error);
               }
             });
   }
@@ -96,8 +104,15 @@ public class PeerDiscovery {
         .addOnFailureListener(
             new OnFailureListener() {
               @Override
-              public void onFailure(final @NonNull Exception e) {
-                Log.e(TAG, "startDiscovery.onFailure", e);
+              public void onFailure(final @NonNull Exception error) {
+                if (error instanceof ApiException) {
+                  switch (((ApiException)error).getStatusCode()) {
+                    case ConnectionsStatusCodes.STATUS_ALREADY_DISCOVERING:
+                      Log.w(TAG, "startDiscovery.onFailure: STATUS_ALREADY_DISCOVERING");
+                      return; // nothing to do
+                  }
+                }
+                Log.e(TAG, "startDiscovery.onFailure", error);
               }
             });
   }
@@ -110,24 +125,25 @@ public class PeerDiscovery {
     this.nearbyConnections.stopDiscovery();
   }
 
-  protected void requestConnection(final @NonNull String endpointId) {
+  protected void requestConnection(final @NonNull String endpointID) {
+    peerRegistry.setStatus(endpointID, PeerStatus.Connecting);
     this.nearbyConnections
-        .requestConnection(P2P_NICKNAME, endpointId, connectionLifecycle) // TODO: nickname
+        .requestConnection(P2P_NICKNAME, endpointID, connectionLifecycle) // TODO: nickname
         .addOnSuccessListener(
           new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(final Void _unused) {
               Log.d(TAG, "requestConnection.onSuccess");
-              peerRegistry.setStatus(endpointId, PeerStatus.Connecting);
+              peerRegistry.setStatus(endpointID, PeerStatus.Connecting);
             }
           }
         )
         .addOnFailureListener(
           new OnFailureListener() {
             @Override
-            public void onFailure(final @NonNull Exception e) {
-              Log.e(TAG, "requestConnection.onFailure", e);
-              // TODO: retry
+            public void onFailure(final @NonNull Exception error) {
+              Log.e(TAG, "requestConnection.onFailure", error);
+              requestConnection(endpointID); // retry connecting
             }
           });
   }
@@ -135,16 +151,16 @@ public class PeerDiscovery {
   // See: https://developers.google.com/android/reference/com/google/android/gms/nearby/connection/EndpointDiscoveryCallback
   private final EndpointDiscoveryCallback endpointDiscovery = new EndpointDiscoveryCallback() {
     @Override
-    public void onEndpointFound(final @NonNull String endpointId, final DiscoveredEndpointInfo info) {
-      Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointFound: endpointId=%s serviceId=%s endpointName=%s", endpointId, info.getServiceId(), info.getEndpointName()));
-      peerRegistry.add(new Peer(endpointId, info.getEndpointName(), PeerStatus.Discovered));
-      requestConnection(endpointId);
+    public void onEndpointFound(final @NonNull String endpointID, final DiscoveredEndpointInfo info) {
+      Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointFound: endpointID=%s serviceId=%s endpointName=%s", endpointID, info.getServiceId(), info.getEndpointName()));
+      peerRegistry.add(new Peer(endpointID, info.getEndpointName(), PeerStatus.Discovered));
+      requestConnection(endpointID);
     }
 
     @Override
-    public void onEndpointLost(final @NonNull String endpointId) {
-      Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointLost: endpointId=%s", endpointId));
-      peerRegistry.setStatus(endpointId, PeerStatus.Lost);
+    public void onEndpointLost(final @NonNull String endpointID) {
+      Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointLost: endpointID=%s", endpointID));
+      peerRegistry.setStatus(endpointID, PeerStatus.Lost);
     }
   };
 
@@ -154,38 +170,44 @@ public class PeerDiscovery {
     // Both sides are now asked if they wish to accept or reject the connection
     // before any data can be sent over this channel.
     @Override
-    public void onConnectionInitiated(final @NonNull String endpointId, final ConnectionInfo info) {
-      Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionInitiated: endpointId=%s endpointName=%s", endpointId, info.getEndpointName()));
-      nearbyConnections.acceptConnection(endpointId, payloadCallback); // automatically accept the connection
-      peerRegistry.setStatus(endpointId, PeerStatus.Connecting);
-      peerRegistry.setName(endpointId, info.getEndpointName());
+    public void onConnectionInitiated(final @NonNull String endpointID, final ConnectionInfo info) {
+      Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionInitiated: endpointID=%s endpointName=%s", endpointID, info.getEndpointName()));
+      nearbyConnections.acceptConnection(endpointID, payloadCallback); // automatically accept the connection
+      peerRegistry.setStatus(endpointID, PeerStatus.Connecting);
+      peerRegistry.setName(endpointID, info.getEndpointName());
     }
 
     // Called after both sides have either accepted or rejected the connection.
     @Override
-    public void onConnectionResult(final @NonNull String endpointId, final ConnectionResolution result) {
-      Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionResult: endpointId=%s result=%d", endpointId, result.getStatus().getStatusCode()));
-      peerRegistry.setStatus(endpointId, PeerStatus.fromStatus(result.getStatus()));
+    public void onConnectionResult(final @NonNull String endpointID, final ConnectionResolution result) {
+      Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionResult: endpointID=%s result=%d", endpointID, result.getStatus().getStatusCode()));
+      peerRegistry.setStatus(endpointID, PeerStatus.fromStatus(result.getStatus()));
+      switch (result.getStatus().getStatusCode()) {
+        case ConnectionsStatusCodes.STATUS_ERROR:
+          requestConnection(endpointID); // retry connecting
+          break;
+      }
     }
 
     // Called when a remote endpoint is disconnected or has become unreachable.
     @Override
-    public void onDisconnected(final @NonNull String endpointId) {
-      Log.w(TAG, String.format("ConnectionLifecycleCallback.onDisconnected: endpointId=%s", endpointId));
-      peerRegistry.setStatus(endpointId, PeerStatus.Disconnected);
+    public void onDisconnected(final @NonNull String endpointID) {
+      Log.w(TAG, String.format("ConnectionLifecycleCallback.onDisconnected: endpointID=%s", endpointID));
+      peerRegistry.setStatus(endpointID, PeerStatus.Disconnected);
+      requestConnection(endpointID); // retry connecting
     }
   };
 
   // See: https://developers.google.com/android/reference/com/google/android/gms/nearby/connection/PayloadCallback
   private final PayloadCallback payloadCallback = new PayloadCallback() {
     @Override
-    public void onPayloadReceived(final @NonNull String endpointId, final Payload payload) {
-      Log.d(TAG, String.format("PayloadCallback.onPayloadReceived: endpointId=%s payload=%s", endpointId, payload));
+    public void onPayloadReceived(final @NonNull String endpointID, final Payload payload) {
+      Log.d(TAG, String.format("PayloadCallback.onPayloadReceived: endpointID=%s payload=%s", endpointID, payload));
     }
 
     @Override
-    public void onPayloadTransferUpdate(final @NonNull String endpointId, final PayloadTransferUpdate update) {
-      Log.d(TAG, String.format("PayloadCallback.onPayloadTransferUpdate: endpointId=%s update=%s", endpointId, update));
+    public void onPayloadTransferUpdate(final @NonNull String endpointID, final PayloadTransferUpdate update) {
+      Log.d(TAG, String.format("PayloadCallback.onPayloadTransferUpdate: endpointID=%s update=%s", endpointID, update));
     }
   };
 }
