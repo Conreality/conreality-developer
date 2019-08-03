@@ -25,9 +25,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.Random;
 
-/** PeerDiscovery */
-public class PeerDiscovery {
-  private static final String TAG = "PeerDiscovery";
+/** PeerMesh */
+public class PeerMesh {
+  private static final String TAG = "PeerMesh";
   private static final Strategy P2P_STRATEGY = Strategy.P2P_CLUSTER;
   private static final String P2P_SERVICE = "app.conreality";
   private static final String P2P_NICKNAME = "Player #" + (new Random()).nextInt(100); // FIXME
@@ -35,12 +35,12 @@ public class PeerDiscovery {
   private final ConnectionsClient nearbyConnections;
   private final PeerRegistry peerRegistry;
 
-  public PeerDiscovery(final @NonNull Context context) {
+  public PeerMesh(final @NonNull Context context) {
     this(context, null);
   }
 
-  public PeerDiscovery(final @NonNull Context context,
-                       final @Nullable PeerRegistry peerRegistry) {
+  public PeerMesh(final @NonNull Context context,
+                  final @Nullable PeerRegistry peerRegistry) {
     this.nearbyConnections = Nearby.getConnectionsClient(context);
     this.peerRegistry = (peerRegistry != null) ? peerRegistry : new PeerRegistry();
   }

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 //import java.util.Random;
 import org.conreality.sdk.Peer;
-import org.conreality.sdk.PeerDiscovery;
+import org.conreality.sdk.PeerMesh;
 import org.conreality.sdk.PeerRegistry;
 import org.conreality.sdk.PeerStatus;
 
@@ -32,7 +32,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
   private static PluginRegistrantCallback pluginRegistrantCallback;
   private long threadID;
-  private PeerDiscovery peerDiscovery;
+  private PeerMesh peerMesh;
   private PeerRegistry peerRegistry;
 
   static void setPluginRegistrant(final @NonNull PluginRegistrantCallback callback) {
@@ -42,7 +42,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
   ApplicationPlugin(final @NonNull Registrar registrar) {
     super(registrar);
     this.peerRegistry = new PeerRegistry();
-    this.peerDiscovery = new PeerDiscovery(registrar.context(), this.peerRegistry);
+    this.peerMesh = new PeerMesh(registrar.context(), this.peerRegistry);
   }
 
   /** Plugin registration. */
@@ -103,37 +103,37 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
       }
 
       case "start": {
-        this.peerDiscovery.start();
+        this.peerMesh.start();
         result.success(true);
         break;
       }
 
       case "stop": {
-        this.peerDiscovery.stop();
+        this.peerMesh.stop();
         result.success(true);
         break;
       }
 
       case "startAdvertising": {
-        this.peerDiscovery.startAdvertising();
+        this.peerMesh.startAdvertising();
         result.success(true);
         break;
       }
 
       case "stopAdvertising": {
-        this.peerDiscovery.stopAdvertising();
+        this.peerMesh.stopAdvertising();
         result.success(true);
         break;
       }
 
       case "startDiscovery": {
-        this.peerDiscovery.startDiscovery();
+        this.peerMesh.startDiscovery();
         result.success(true);
         break;
       }
 
       case "stopDiscovery": {
-        this.peerDiscovery.stopDiscovery();
+        this.peerMesh.stopDiscovery();
         result.success(true);
         break;
       }
