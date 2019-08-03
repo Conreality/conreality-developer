@@ -14,6 +14,10 @@ public class PeerRegistry {
 
   public PeerRegistry() {}
 
+  public boolean has(final @NonNull String peerID) {
+    return this.peers.containsKey(peerID);
+  }
+
   public void add(final @NonNull Peer peer) {
     this.peers.putIfAbsent(peer.id, peer);
   }
@@ -22,6 +26,7 @@ public class PeerRegistry {
     this.peers.compute(peerID, (peerID_, peer) -> {
       if (peer != null) {
         peer.status = peerStatus;
+        peer.updateLastSeen();
       }
       return peer;
     });

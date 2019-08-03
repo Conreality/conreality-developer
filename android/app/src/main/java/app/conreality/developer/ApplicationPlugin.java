@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -79,7 +80,6 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
     Log.d(TAG, String.format("onServiceConnected: name=%s service=%s", name, service));
     this.peerService = ((PeerService.LocalBinder)service).getService();
-    this.peerService.onConnection(this.registrar.context());
   }
 
   /** Implements ServiceConnection#onServiceDisconnected(). */
@@ -92,6 +92,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
   }
 
   /** Implements MethodCallHandler#onMethodCall(). */
+  @UiThread
   @Override
   public void onMethodCall(final @NonNull MethodCall call, final @NonNull Result result) {
     assert(call != null);
@@ -120,6 +121,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
             peerInfo.put("id", peer.id);
             peerInfo.put("name", peer.name);
             peerInfo.put("status", peer.status.ordinal());
+            peerInfo.put("lastSeen", (peer.lastSeen != null) ? peer.lastSeen.toEpochMilli() : null);
             peers.add(peerInfo);
           }
         }
@@ -156,25 +158,25 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
       case "PeerMesh.startAdvertising": {
         //this.peerService.startAdvertising();
-        result.success(true);
+        result.success(false);
         break;
       }
 
       case "PeerMesh.stopAdvertising": {
         //this.peerService.stopAdvertising();
-        result.success(true);
+        result.success(false);
         break;
       }
 
       case "PeerMesh.startDiscovery": {
         //this.peerService.startDiscovery();
-        result.success(true);
+        result.success(false);
         break;
       }
 
       case "PeerMesh.stopDiscovery": {
         //this.peerService.stopDiscovery();
-        result.success(true);
+        result.success(false);
         break;
       }
 
@@ -184,6 +186,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
     }
   }
 
+  @UiThread
   protected boolean requestPermissions() {
     // Request the permission for location access:
     if (ContextCompat.checkSelfPermission(this.registrar.activity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

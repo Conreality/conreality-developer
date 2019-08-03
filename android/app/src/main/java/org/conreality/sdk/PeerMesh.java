@@ -3,6 +3,8 @@
 package org.conreality.sdk;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -127,6 +129,7 @@ public class PeerMesh {
 
   protected void requestConnection(final @NonNull String endpointID) {
     registry.setStatus(endpointID, PeerStatus.Connecting);
+
     this.nearbyConnections
         .requestConnection(P2P_NICKNAME, endpointID, connectionLifecycle) // TODO: nickname
         .addOnSuccessListener(
@@ -134,6 +137,7 @@ public class PeerMesh {
             @Override
             public void onSuccess(final Void _unused) {
               Log.d(TAG, "requestConnection.onSuccess");
+
               registry.setStatus(endpointID, PeerStatus.Connected); // FIXME?
             }
           }
@@ -148,10 +152,19 @@ public class PeerMesh {
                     Log.w(TAG, "requestConnection.onFailure: STATUS_ALREADY_CONNECTED_TO_ENDPOINT");
                     registry.setStatus(endpointID, PeerStatus.Connected);
                     return;
+                  case ConnectionsStatusCodes.STATUS_ENDPOINT_UNKNOWN:
+                    Log.e(TAG, "requestConnection.onFailure", error);
+                    registry.setStatus(endpointID, PeerStatus.Lost);
+                    return;
+                  case ConnectionsStatusCodes.STATUS_BLUETOOTH_ERROR:
+                    break; // TODO: restart discovery/advertising
                 }
               }
+
               Log.e(TAG, "requestConnection.onFailure", error);
-              requestConnection(endpointID); // retry connecting
+              new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                requestConnection(endpointID); // retry connecting
+              }, 1000);
             }
           });
   }
@@ -161,13 +174,16 @@ public class PeerMesh {
     @Override
     public void onEndpointFound(final @NonNull String endpointID, final DiscoveredEndpointInfo info) {
       Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointFound: endpointID=%s serviceId=%s endpointName=%s", endpointID, info.getServiceId(), info.getEndpointName()));
+
       registry.add(new Peer(endpointID, info.getEndpointName(), PeerStatus.Discovered));
+
       requestConnection(endpointID);
     }
 
     @Override
     public void onEndpointLost(final @NonNull String endpointID) {
       Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointLost: endpointID=%s", endpointID));
+
       registry.setStatus(endpointID, PeerStatus.Lost);
     }
   };
@@ -180,19 +196,30 @@ public class PeerMesh {
     @Override
     public void onConnectionInitiated(final @NonNull String endpointID, final ConnectionInfo info) {
       Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionInitiated: endpointID=%s endpointName=%s", endpointID, info.getEndpointName()));
+
+      if (!registry.has(endpointID)) {
+        registry.add(new Peer(endpointID, info.getEndpointName(), PeerStatus.Connecting));
+      }
+      else {
+        registry.setStatus(endpointID, PeerStatus.Connecting);
+        registry.setName(endpointID, info.getEndpointName());
+      }
+
       nearbyConnections.acceptConnection(endpointID, payloadCallback); // automatically accept the connection
-      registry.setStatus(endpointID, PeerStatus.Connecting);
-      registry.setName(endpointID, info.getEndpointName());
     }
 
     // Called after both sides have either accepted or rejected the connection.
     @Override
     public void onConnectionResult(final @NonNull String endpointID, final ConnectionResolution result) {
       Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionResult: endpointID=%s result=%d", endpointID, result.getStatus().getStatusCode()));
+
       registry.setStatus(endpointID, PeerStatus.fromStatus(result.getStatus()));
+
       switch (result.getStatus().getStatusCode()) {
         case ConnectionsStatusCodes.STATUS_ERROR:
-          requestConnection(endpointID); // retry connecting
+          new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            requestConnection(endpointID); // retry connecting
+          }, 1000);
           break;
       }
     }
@@ -201,9 +228,13 @@ public class PeerMesh {
     @Override
     public void onDisconnected(final @NonNull String endpointID) {
       Log.w(TAG, String.format("ConnectionLifecycleCallback.onDisconnected: endpointID=%s", endpointID));
+
       registry.setStatus(endpointID, PeerStatus.Disconnected);
-      requestConnection(endpointID); // retry connecting
-    }
+
+      new Handler(Looper.getMainLooper()).postDelayed(() -> {
+        requestConnection(endpointID); // retry connecting
+      }, 1000);
+}
   };
 
   // See: https://developers.google.com/android/reference/com/google/android/gms/nearby/connection/PayloadCallback

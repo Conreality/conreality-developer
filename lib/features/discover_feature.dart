@@ -48,7 +48,7 @@ class _DiscoverFeatureState extends State<DiscoverFeature> {
   void dispose() async {
     super.dispose();
     _timer.cancel();
-    print(await PeerMesh.stop());
+    //print(await PeerMesh.stop());
   }
 
   @override

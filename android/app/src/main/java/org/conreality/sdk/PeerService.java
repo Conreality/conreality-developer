@@ -7,10 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +40,7 @@ public final class PeerService extends Service {
   @Override
   public void onCreate() {
     Log.i(TAG, "Created the bound service.");
-  }
-
-  public void onConnection(final @NonNull Context context) {
-    assert(context != null);
-    this.peerMesh = new PeerMesh(context);
+    this.peerMesh = new PeerMesh(this);
   }
 
   /** Implements Service#onDestroy(). */
@@ -71,21 +70,25 @@ public final class PeerService extends Service {
   }
 
   public void start() {
-    if (this.peerMesh != null) {
-      this.peerMesh.start();
-    }
+    if (this.peerMesh == null) return;
+
+    this.peerMesh.startDiscovery();
+
+    new Handler(Looper.getMainLooper()).postDelayed(() -> {
+      peerMesh.stopDiscovery(); // FIXME
+      peerMesh.startAdvertising();
+    }, 5000);
   }
 
   public void stop() {
-    if (this.peerMesh != null) {
-      this.peerMesh.stop();
-    }
+    if (this.peerMesh == null) return;
+
+    this.peerMesh.stop();
   }
 
   public List<Peer> getPeers() {
-    if (this.peerMesh != null) {
-      return this.peerMesh.registry.toList();
-    }
-    return new ArrayList<Peer>();
+    if (this.peerMesh == null) return new ArrayList<Peer>();
+
+    return this.peerMesh.registry.toList();
   }
 }
