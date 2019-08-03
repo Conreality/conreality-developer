@@ -1,9 +1,15 @@
 /* This is free and unencumbered software released into the public domain. */
 
+import 'package:flutter/services.dart' show MethodChannel, PlatformException;
 import 'package:meta/meta.dart' show required;
 
 ////////////////////////////////////////////////////////////////////////////////
 
+const MethodChannel _global = const MethodChannel('app.conreality/developer');
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// PeerStatus
 enum PeerStatus {
   Unknown,
   Discovered,
@@ -17,6 +23,7 @@ enum PeerStatus {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/// Peer
 class Peer {
   Peer({@required this.id, this.name, this.status});
 
@@ -31,5 +38,45 @@ class Peer {
   @override
   String toString() {
     return "Peer(id: $id, name: $name, status: $status)";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// PeerMesh
+abstract class PeerMesh {
+  static Future<Set<Peer>> getPeers() async {
+    return (await _global.invokeMethod('PeerMesh.getPeers') as List<dynamic>)
+        .cast<Map<dynamic, dynamic>>()
+        .map((map) => Peer.fromMap(map))
+        .toSet();
+  }
+
+  static Future<bool> requestPermissions() {
+    return _global.invokeMethod('PeerMesh.requestPermissions');
+  }
+
+  static Future<bool> start() {
+    return _global.invokeMethod('PeerMesh.start');
+  }
+
+  static Future<bool> stop() {
+    return _global.invokeMethod('PeerMesh.stop');
+  }
+
+  static Future<bool> startAdvertising() {
+    return _global.invokeMethod('PeerMesh.startAdvertising');
+  }
+
+  static Future<bool> stopAdvertising() {
+    return _global.invokeMethod('PeerMesh.stopAdvertising');
+  }
+
+  static Future<bool> startDiscovery() {
+    return _global.invokeMethod('PeerMesh.startDiscovery');
+  }
+
+  static Future<bool> stopDiscovery() {
+    return _global.invokeMethod('PeerMesh.stopDiscovery');
   }
 }

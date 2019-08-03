@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
 
-import '../src/gdk.dart' show GDK;
-import '../src/sdk.dart' show Peer;
+import '../src/sdk.dart';
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -33,10 +32,10 @@ class _DiscoverFeatureState extends State<DiscoverFeature> {
   }
 
   void _initAdvertisingAndDiscovery() async {
-    print(await GDK.requestPermissions());
-    print(await GDK.start());
+    print(await PeerMesh.requestPermissions());
+    print(await PeerMesh.start());
     _timer = Timer.periodic(Duration(seconds: 1), (final Timer timer) async {
-      final peers = await GDK.getPeers();
+      final peers = await PeerMesh.getPeers();
       print("Current peers: $peers"); // DEBUG
       if (!mounted) return;
       setState(() {
@@ -49,7 +48,7 @@ class _DiscoverFeatureState extends State<DiscoverFeature> {
   void dispose() async {
     super.dispose();
     _timer.cancel();
-    print(await GDK.stop());
+    print(await PeerMesh.stop());
   }
 
   @override
@@ -71,7 +70,7 @@ class _DiscoverFeatureState extends State<DiscoverFeature> {
 class PeerList extends StatelessWidget {
   PeerList(this.peers, {Key key}) : super(key: key);
 
-  List<Peer> peers;
+  final List<Peer> peers;
 
   @override
   Widget build(final BuildContext context) {

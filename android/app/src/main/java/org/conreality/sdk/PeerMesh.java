@@ -33,16 +33,16 @@ public class PeerMesh {
   private static final String P2P_NICKNAME = "Player #" + (new Random()).nextInt(100); // FIXME
 
   private final ConnectionsClient nearbyConnections;
-  private final PeerRegistry peerRegistry;
+  public final PeerRegistry registry;
 
   public PeerMesh(final @NonNull Context context) {
     this(context, null);
   }
 
   public PeerMesh(final @NonNull Context context,
-                  final @Nullable PeerRegistry peerRegistry) {
+                  final @Nullable PeerRegistry registry) {
     this.nearbyConnections = Nearby.getConnectionsClient(context);
-    this.peerRegistry = (peerRegistry != null) ? peerRegistry : new PeerRegistry();
+    this.registry = (registry != null) ? registry : new PeerRegistry();
   }
 
   public void start() {
@@ -126,7 +126,7 @@ public class PeerMesh {
   }
 
   protected void requestConnection(final @NonNull String endpointID) {
-    peerRegistry.setStatus(endpointID, PeerStatus.Connecting);
+    registry.setStatus(endpointID, PeerStatus.Connecting);
     this.nearbyConnections
         .requestConnection(P2P_NICKNAME, endpointID, connectionLifecycle) // TODO: nickname
         .addOnSuccessListener(
@@ -134,7 +134,7 @@ public class PeerMesh {
             @Override
             public void onSuccess(final Void _unused) {
               Log.d(TAG, "requestConnection.onSuccess");
-              peerRegistry.setStatus(endpointID, PeerStatus.Connecting);
+              registry.setStatus(endpointID, PeerStatus.Connecting);
             }
           }
         )
@@ -153,14 +153,14 @@ public class PeerMesh {
     @Override
     public void onEndpointFound(final @NonNull String endpointID, final DiscoveredEndpointInfo info) {
       Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointFound: endpointID=%s serviceId=%s endpointName=%s", endpointID, info.getServiceId(), info.getEndpointName()));
-      peerRegistry.add(new Peer(endpointID, info.getEndpointName(), PeerStatus.Discovered));
+      registry.add(new Peer(endpointID, info.getEndpointName(), PeerStatus.Discovered));
       requestConnection(endpointID);
     }
 
     @Override
     public void onEndpointLost(final @NonNull String endpointID) {
       Log.d(TAG, String.format("EndpointDiscoveryCallback.onEndpointLost: endpointID=%s", endpointID));
-      peerRegistry.setStatus(endpointID, PeerStatus.Lost);
+      registry.setStatus(endpointID, PeerStatus.Lost);
     }
   };
 
@@ -173,15 +173,15 @@ public class PeerMesh {
     public void onConnectionInitiated(final @NonNull String endpointID, final ConnectionInfo info) {
       Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionInitiated: endpointID=%s endpointName=%s", endpointID, info.getEndpointName()));
       nearbyConnections.acceptConnection(endpointID, payloadCallback); // automatically accept the connection
-      peerRegistry.setStatus(endpointID, PeerStatus.Connecting);
-      peerRegistry.setName(endpointID, info.getEndpointName());
+      registry.setStatus(endpointID, PeerStatus.Connecting);
+      registry.setName(endpointID, info.getEndpointName());
     }
 
     // Called after both sides have either accepted or rejected the connection.
     @Override
     public void onConnectionResult(final @NonNull String endpointID, final ConnectionResolution result) {
       Log.d(TAG, String.format("ConnectionLifecycleCallback.onConnectionResult: endpointID=%s result=%d", endpointID, result.getStatus().getStatusCode()));
-      peerRegistry.setStatus(endpointID, PeerStatus.fromStatus(result.getStatus()));
+      registry.setStatus(endpointID, PeerStatus.fromStatus(result.getStatus()));
       switch (result.getStatus().getStatusCode()) {
         case ConnectionsStatusCodes.STATUS_ERROR:
           requestConnection(endpointID); // retry connecting
@@ -193,7 +193,7 @@ public class PeerMesh {
     @Override
     public void onDisconnected(final @NonNull String endpointID) {
       Log.w(TAG, String.format("ConnectionLifecycleCallback.onDisconnected: endpointID=%s", endpointID));
-      peerRegistry.setStatus(endpointID, PeerStatus.Disconnected);
+      registry.setStatus(endpointID, PeerStatus.Disconnected);
       requestConnection(endpointID); // retry connecting
     }
   };

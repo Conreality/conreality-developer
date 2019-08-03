@@ -33,7 +33,6 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
   private static PluginRegistrantCallback pluginRegistrantCallback;
   private long threadID;
   private PeerMesh peerMesh;
-  private PeerRegistry peerRegistry;
 
   static void setPluginRegistrant(final @NonNull PluginRegistrantCallback callback) {
     pluginRegistrantCallback = callback;
@@ -41,8 +40,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
   ApplicationPlugin(final @NonNull Registrar registrar) {
     super(registrar);
-    this.peerRegistry = new PeerRegistry();
-    this.peerMesh = new PeerMesh(registrar.context(), this.peerRegistry);
+    this.peerMesh = new PeerMesh(registrar.context());
   }
 
   /** Plugin registration. */
@@ -72,14 +70,21 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
     assert(call.method != null);
     switch (call.method) {
 
-      case "getVersion": {
+      case "GDK.getVersion": {
         result.success(Developer.version());
         break;
       }
 
-      case "getPeers": {
+      case "GDK.spawnThread": {
+        this.threadID++;
+        new ScriptThreadHandler(this.registrar, this.threadID);
+        result.success(this.threadID);
+        break;
+      }
+
+      case "PeerMesh.getPeers": {
         final List<Map<String, Object>> peers = new ArrayList<Map<String, Object>>();
-        for (final Peer peer : this.peerRegistry.toList()) {
+        for (final Peer peer : this.peerMesh.registry.toList()) {
           final Map<String, Object> peerInfo = new HashMap<String, Object>();
           peerInfo.put("id", peer.id);
           peerInfo.put("name", peer.name);
@@ -90,49 +95,42 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
         break;
       }
 
-      case "spawnThread": {
-        this.threadID++;
-        new ScriptThreadHandler(this.registrar, this.threadID);
-        result.success(this.threadID);
-        break;
-      }
-
-      case "requestPermissions": {
+      case "PeerMesh.requestPermissions": {
         result.success(this.requestPermissions());
         break;
       }
 
-      case "start": {
+      case "PeerMesh.start": {
         this.peerMesh.start();
         result.success(true);
         break;
       }
 
-      case "stop": {
+      case "PeerMesh.stop": {
         this.peerMesh.stop();
         result.success(true);
         break;
       }
 
-      case "startAdvertising": {
+      case "PeerMesh.startAdvertising": {
         this.peerMesh.startAdvertising();
         result.success(true);
         break;
       }
 
-      case "stopAdvertising": {
+      case "PeerMesh.stopAdvertising": {
         this.peerMesh.stopAdvertising();
         result.success(true);
         break;
       }
 
-      case "startDiscovery": {
+      case "PeerMesh.startDiscovery": {
         this.peerMesh.startDiscovery();
         result.success(true);
         break;
       }
 
-      case "stopDiscovery": {
+      case "PeerMesh.stopDiscovery": {
         this.peerMesh.stopDiscovery();
         result.success(true);
         break;

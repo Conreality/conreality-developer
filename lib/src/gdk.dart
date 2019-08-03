@@ -4,8 +4,6 @@ import 'package:flutter/services.dart' show MethodChannel, PlatformException;
 
 import 'dart:io' show File, IOException;
 
-import 'sdk.dart' show Peer;
-
 ////////////////////////////////////////////////////////////////////////////////
 
 const MethodChannel _global = const MethodChannel('app.conreality/developer');
@@ -15,42 +13,7 @@ const MethodChannel _global = const MethodChannel('app.conreality/developer');
 abstract class GDK {
   /// The current GDK runtime version.
   static Future<String> get version async {
-    return await _global.invokeMethod('getVersion');
-  }
-
-  static Future<Set<Peer>> getPeers() async {
-    return (await _global.invokeMethod('getPeers') as List<dynamic>)
-        .cast<Map<dynamic, dynamic>>()
-        .map((map) => Peer.fromMap(map))
-        .toSet();
-  }
-
-  static Future<bool> requestPermissions() {
-    return _global.invokeMethod('requestPermissions');
-  }
-
-  static Future<bool> start() {
-    return _global.invokeMethod('start');
-  }
-
-  static Future<bool> stop() {
-    return _global.invokeMethod('stop');
-  }
-
-  static Future<bool> startAdvertising() {
-    return _global.invokeMethod('startAdvertising');
-  }
-
-  static Future<bool> stopAdvertising() {
-    return _global.invokeMethod('stopAdvertising');
-  }
-
-  static Future<bool> startDiscovery() {
-    return _global.invokeMethod('startDiscovery');
-  }
-
-  static Future<bool> stopDiscovery() {
-    return _global.invokeMethod('stopDiscovery');
+    return await _global.invokeMethod('GDK.getVersion');
   }
 }
 
@@ -86,7 +49,7 @@ class GDKThread {
   /// Spawns a new GDK interpreter thread.
   static Future<GDKThread> spawn() async {
     try {
-      final int id = await _global.invokeMethod('spawnThread');
+      final int id = await _global.invokeMethod('GDK.spawnThread');
       final thread = GDKThread._(id);
       await thread.evalAsset("scripts/prelude.luac");
       return thread;
