@@ -21,4 +21,8 @@ public class Peer {
   public void updateLastSeen() {
     this.lastSeen = Instant.now();
   }
+
+  public boolean isConnected() {
+    return this.status == PeerStatus.Connected;
+  }
 }

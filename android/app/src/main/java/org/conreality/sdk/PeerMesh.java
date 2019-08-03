@@ -25,6 +25,7 @@ import com.google.android.gms.nearby.connection.PayloadTransferUpdate;
 import com.google.android.gms.nearby.connection.Strategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import java.util.List;
 import java.util.Random;
 
 /** PeerMesh */
@@ -125,6 +126,12 @@ public class PeerMesh {
 
   public void stopDiscovery() {
     this.nearbyConnections.stopDiscovery();
+  }
+
+  public void pingAll() {
+    final List<String> peerIDs = this.registry.getConnectedPeerIDs();
+    if (peerIDs.size() == 0) return;
+    this.nearbyConnections.sendPayload(peerIDs, Payload.fromBytes(new byte[]{}));
   }
 
   protected void requestConnection(final @NonNull String endpointID) {
@@ -234,7 +241,7 @@ public class PeerMesh {
       new Handler(Looper.getMainLooper()).postDelayed(() -> {
         requestConnection(endpointID); // retry connecting
       }, 1000);
-}
+    }
   };
 
   // See: https://developers.google.com/android/reference/com/google/android/gms/nearby/connection/PayloadCallback
@@ -246,7 +253,7 @@ public class PeerMesh {
 
     @Override
     public void onPayloadTransferUpdate(final @NonNull String endpointID, final PayloadTransferUpdate update) {
-      Log.d(TAG, String.format("PayloadCallback.onPayloadTransferUpdate: endpointID=%s update=%s", endpointID, update));
+      Log.d(TAG, String.format("PayloadCallback.onPayloadTransferUpdate: endpointID=%s update={payloadId=%d, status=%d, bytes=%d/%d}", endpointID, update.getPayloadId(), update.getStatus(), update.getBytesTransferred(), update.getTotalBytes()));
     }
   };
 }

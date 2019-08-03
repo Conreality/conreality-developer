@@ -41,6 +41,17 @@ public class PeerRegistry {
     });
   }
 
+  public List<String> getConnectedPeerIDs() {
+    final List<String> result = new ArrayList<String>();
+    for (final Map.Entry<String, Peer> entry : this.peers.entrySet()) {
+      final Peer peer = entry.getValue();
+      if (peer.isConnected()) {
+        result.add(peer.id);
+      }
+    }
+    return result;
+  }
+
   public List<Peer> toList() {
     final List<Peer> result = new ArrayList<Peer>();
     for (final Map.Entry<String, Peer> entry : this.peers.entrySet()) {

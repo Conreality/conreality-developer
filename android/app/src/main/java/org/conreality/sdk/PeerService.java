@@ -77,7 +77,22 @@ public final class PeerService extends Service {
     new Handler(Looper.getMainLooper()).postDelayed(() -> {
       peerMesh.stopDiscovery(); // FIXME
       peerMesh.startAdvertising();
+      schedulePing();
     }, 5000);
+  }
+
+  public void schedulePing() {
+    pingAll();
+    new Handler(Looper.getMainLooper()).postDelayed(() -> {
+      schedulePing();
+    }, 1000);
+  }
+
+  public void pingAll() {
+    Log.d(TAG, "Pinging all peers...");
+    if (this.peerMesh != null) {
+      this.peerMesh.pingAll();
+    }
   }
 
   public void stop() {

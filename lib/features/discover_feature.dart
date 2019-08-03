@@ -83,8 +83,8 @@ class PeerList extends StatelessWidget {
           child: ListTile(
             leading: Icon(Icons.person),
             title: Text(peer.name ?? "Unknown"),
-            subtitle: Text(peer.id ?? "N/A"),
-            trailing: Text(peer.status.toString()), // TODO
+            subtitle: Text(peer?.lastSeen?.toIso8601String() ?? "N/A"),
+            trailing: Text(peer.status.toString().substring("PeerStatus.".length)), // TODO
           ),
           onTap: () {},
         );

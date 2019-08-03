@@ -25,19 +25,25 @@ enum PeerStatus {
 
 /// Peer
 class Peer {
-  Peer({@required this.id, this.name, this.status});
+  Peer({@required this.id, this.name, this.status, this.lastSeen});
 
   final String id;
   final String name;
   final PeerStatus status;
+  final DateTime lastSeen;
 
   factory Peer.fromMap(final Map<dynamic, dynamic> map) {
-    return Peer(id: map['id'], name: map['name'], status: PeerStatus.values[map['status'] ?? 0]);
+    return Peer(
+      id: map['id'],
+      name: map['name'],
+      status: PeerStatus.values[map['status'] ?? 0],
+      lastSeen: map.containsKey('lastSeen') ? DateTime.fromMillisecondsSinceEpoch(map['lastSeen'], isUtc: true) : null,
+    );
   }
 
   @override
   String toString() {
-    return "Peer(id: $id, name: $name, status: $status)";
+    return "Peer(id: $id, name: $name, status: $status, lastSeen: $lastSeen)";
   }
 }
 
