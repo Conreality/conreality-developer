@@ -5,6 +5,7 @@ import 'dart:async' show Timer;
 import 'package:flutter/material.dart';
 
 import 'package:conreality_icons/conreality_icons.dart' show ConrealityIcons;
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../src/sdk.dart';
 
@@ -83,7 +84,7 @@ class PeerList extends StatelessWidget {
           child: ListTile(
             leading: Icon(Icons.person),
             title: Text(peer.name ?? "Unknown"),
-            subtitle: Text(peer?.lastSeen?.toIso8601String() ?? "N/A"),
+            subtitle: (peer.lastSeen != null) ? Text(timeago.format(peer.lastSeen)) : "N/A",
             trailing: Text(peer.status.toString().substring("PeerStatus.".length)), // TODO
           ),
           onTap: () {},

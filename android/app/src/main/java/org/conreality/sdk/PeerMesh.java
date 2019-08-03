@@ -248,7 +248,13 @@ public class PeerMesh {
   private final PayloadCallback payloadCallback = new PayloadCallback() {
     @Override
     public void onPayloadReceived(final @NonNull String endpointID, final Payload payload) {
-      Log.d(TAG, String.format("PayloadCallback.onPayloadReceived: endpointID=%s payload=%s", endpointID, payload));
+      Log.d(TAG, String.format("PayloadCallback.onPayloadReceived: endpointID=%s payload={id=%d, type=%d}", endpointID, payload.getId(), payload.getType()));
+      registry.peers.compute(endpointID, (peerID, peer) -> {
+        if (peer != null) {
+          peer.updateLastSeen();
+        }
+        return peer;
+      });
     }
 
     @Override

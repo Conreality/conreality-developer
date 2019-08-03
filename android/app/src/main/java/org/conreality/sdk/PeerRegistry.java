@@ -10,7 +10,7 @@ import java.util.Map;
 
 /** PeerRegistry */
 public class PeerRegistry {
-  protected Map<String, Peer> peers = new HashMap<String, Peer>();
+  public Map<String, Peer> peers = new HashMap<String, Peer>();
 
   public PeerRegistry() {}
 
