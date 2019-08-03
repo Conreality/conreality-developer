@@ -134,7 +134,7 @@ public class PeerMesh {
             @Override
             public void onSuccess(final Void _unused) {
               Log.d(TAG, "requestConnection.onSuccess");
-              registry.setStatus(endpointID, PeerStatus.Connecting);
+              registry.setStatus(endpointID, PeerStatus.Connected); // FIXME?
             }
           }
         )
@@ -142,6 +142,14 @@ public class PeerMesh {
           new OnFailureListener() {
             @Override
             public void onFailure(final @NonNull Exception error) {
+              if (error instanceof ApiException) {
+                switch (((ApiException)error).getStatusCode()) {
+                  case ConnectionsStatusCodes.STATUS_ALREADY_CONNECTED_TO_ENDPOINT:
+                    Log.w(TAG, "requestConnection.onFailure: STATUS_ALREADY_CONNECTED_TO_ENDPOINT");
+                    registry.setStatus(endpointID, PeerStatus.Connected);
+                    return;
+                }
+              }
               Log.e(TAG, "requestConnection.onFailure", error);
               requestConnection(endpointID); // retry connecting
             }

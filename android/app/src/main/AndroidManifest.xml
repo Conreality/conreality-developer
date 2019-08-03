@@ -64,6 +64,7 @@
         android:name=".Application"
         android:label="Conreality Developer"
         android:icon="@mipmap/ic_launcher">
+        <service android:name="org.conreality.sdk.PeerService"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

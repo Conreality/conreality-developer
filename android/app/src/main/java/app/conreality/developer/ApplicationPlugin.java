@@ -3,9 +3,15 @@
 package app.conreality.developer;
 
 import android.Manifest;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.IBinder;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -21,26 +27,19 @@ import java.util.List;
 import java.util.Map;
 //import java.util.Random;
 import org.conreality.sdk.Peer;
-import org.conreality.sdk.PeerMesh;
-import org.conreality.sdk.PeerRegistry;
-import org.conreality.sdk.PeerStatus;
+import org.conreality.sdk.PeerService;
 
 /** ApplicationPlugin */
-public final class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver {
+public final class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver, ServiceConnection {
   private static final String TAG = "ConrealityDeveloper";
   public static final String CHANNEL = "app.conreality/developer";
 
   private static PluginRegistrantCallback pluginRegistrantCallback;
   private long threadID;
-  private PeerMesh peerMesh;
+  private @Nullable PeerService peerService;
 
   static void setPluginRegistrant(final @NonNull PluginRegistrantCallback callback) {
     pluginRegistrantCallback = callback;
-  }
-
-  ApplicationPlugin(final @NonNull Registrar registrar) {
-    super(registrar);
-    this.peerMesh = new PeerMesh(registrar.context());
   }
 
   /** Plugin registration. */
@@ -62,6 +61,37 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
       .setMethodCallHandler(new ApplicationPlugin(registrar));
   }
 
+  ApplicationPlugin(final @NonNull Registrar registrar) {
+    super(registrar);
+    final @NonNull Context context = registrar.context();
+    final boolean ok = context.bindService(new Intent(context, PeerService.class), this, Context.BIND_AUTO_CREATE);
+    if (!ok) {
+      Log.e(TAG, "Failed to connect to the bound service.");
+      context.unbindService(this);
+    }
+  }
+
+  /** Implements ServiceConnection#onServiceConnected(). */
+  @Override
+  public void onServiceConnected(final @NonNull ComponentName name, final @NonNull IBinder service) {
+    assert(name != null);
+    assert(service != null);
+
+    Log.d(TAG, String.format("onServiceConnected: name=%s service=%s", name, service));
+    this.peerService = ((PeerService.LocalBinder)service).getService();
+    this.peerService.onConnection(this.registrar.context());
+  }
+
+  /** Implements ServiceConnection#onServiceDisconnected(). */
+  @Override
+  public void onServiceDisconnected(final @NonNull ComponentName name) {
+    assert(name != null);
+
+    Log.d(TAG, String.format("onServiceDisconnected: name=%s", name));
+    this.peerService = null;
+  }
+
+  /** Implements MethodCallHandler#onMethodCall(). */
   @Override
   public void onMethodCall(final @NonNull MethodCall call, final @NonNull Result result) {
     assert(call != null);
@@ -84,12 +114,14 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
 
       case "PeerMesh.getPeers": {
         final List<Map<String, Object>> peers = new ArrayList<Map<String, Object>>();
-        for (final Peer peer : this.peerMesh.registry.toList()) {
-          final Map<String, Object> peerInfo = new HashMap<String, Object>();
-          peerInfo.put("id", peer.id);
-          peerInfo.put("name", peer.name);
-          peerInfo.put("status", peer.status.ordinal());
-          peers.add(peerInfo);
+        if (this.peerService != null) {
+          for (final Peer peer : this.peerService.getPeers()) {
+            final Map<String, Object> peerInfo = new HashMap<String, Object>();
+            peerInfo.put("id", peer.id);
+            peerInfo.put("name", peer.name);
+            peerInfo.put("status", peer.status.ordinal());
+            peers.add(peerInfo);
+          }
         }
         result.success(peers);
         break;
@@ -101,37 +133,47 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
       }
 
       case "PeerMesh.start": {
-        this.peerMesh.start();
-        result.success(true);
+        if (this.peerService != null) {
+          this.peerService.start();
+          result.success(true);
+        }
+        else {
+          result.success(false);
+        }
         break;
       }
 
       case "PeerMesh.stop": {
-        this.peerMesh.stop();
-        result.success(true);
+        if (this.peerService != null) {
+          this.peerService.stop();
+          result.success(true);
+        }
+        else {
+          result.success(false);
+        }
         break;
       }
 
       case "PeerMesh.startAdvertising": {
-        this.peerMesh.startAdvertising();
+        //this.peerService.startAdvertising();
         result.success(true);
         break;
       }
 
       case "PeerMesh.stopAdvertising": {
-        this.peerMesh.stopAdvertising();
+        //this.peerService.stopAdvertising();
         result.success(true);
         break;
       }
 
       case "PeerMesh.startDiscovery": {
-        this.peerMesh.startDiscovery();
+        //this.peerService.startDiscovery();
         result.success(true);
         break;
       }
 
       case "PeerMesh.stopDiscovery": {
-        this.peerMesh.stopDiscovery();
+        //this.peerService.stopDiscovery();
         result.success(true);
         break;
       }
@@ -142,7 +184,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
     }
   }
 
-  boolean requestPermissions() {
+  protected boolean requestPermissions() {
     // Request the permission for location access:
     if (ContextCompat.checkSelfPermission(this.registrar.activity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
       ActivityCompat.requestPermissions(this.registrar.activity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0); // TODO: handle the callback
