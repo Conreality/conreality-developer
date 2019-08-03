@@ -27,6 +27,7 @@ dependencies:
 
   material_design_icons_flutter: ^3.2.3695
   package_info: ^0.4.0+4
+  timeago: ^2.0.18
 
   # See: https://github.com/transistorsoft/flutter_background_geolocation
   # See: https://pub.dev/packages/flutter_background_geolocation
