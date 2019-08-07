@@ -27,8 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 //import java.util.Random;
-import org.conreality.sdk.Peer;
-import org.conreality.sdk.PeerService;
+import org.conreality.sdk.android.Peer;
+import org.conreality.sdk.android.PeerService;
 
 /** ApplicationPlugin */
 public final class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver, ServiceConnection {
@@ -65,10 +65,9 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
   ApplicationPlugin(final @NonNull Registrar registrar) {
     super(registrar);
     final @NonNull Context context = registrar.context();
-    final boolean ok = context.bindService(new Intent(context, PeerService.class), this, Context.BIND_AUTO_CREATE);
+    final boolean ok = PeerService.bind(context, this);
     if (!ok) {
       Log.e(TAG, "Failed to connect to the bound service.");
-      context.unbindService(this);
     }
   }
 
@@ -121,7 +120,7 @@ public final class ApplicationPlugin extends FlutterMethodCallHandler implements
             peerInfo.put("id", peer.id);
             peerInfo.put("name", peer.name);
             peerInfo.put("status", peer.status.ordinal());
-            peerInfo.put("lastSeen", (peer.lastSeen != null) ? peer.lastSeen.toEpochMilli() : null);
+            peerInfo.put("lastSeen", (peer.lastSeen > 0) ? peer.lastSeen : null);
             peers.add(peerInfo);
           }
         }
