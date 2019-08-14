@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="app.conreality.developer">
+    package="app.conreality.developer"
+    android:installLocation="auto">
 
     <!-- See: https://developer.android.com/reference/android/Manifest.permission#ACCESS_BACKGROUND_LOCATION -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
