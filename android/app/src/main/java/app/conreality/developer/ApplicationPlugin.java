@@ -16,6 +16,8 @@ import androidx.annotation.UiThread;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
+import dev.conreality.sdk.android.Peer;
+import dev.conreality.sdk.android.PeerService;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
@@ -27,8 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 //import java.util.Random;
-import org.conreality.sdk.android.Peer;
-import org.conreality.sdk.android.PeerService;
 
 /** ApplicationPlugin */
 public final class ApplicationPlugin extends FlutterMethodCallHandler implements DefaultLifecycleObserver, ServiceConnection {
